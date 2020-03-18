@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
 @Data
 public class LoginInfo extends Model<LoginInfo> {
     //id
+    @TableId
     private Long id;
     //登陆token
     private String loginToken;

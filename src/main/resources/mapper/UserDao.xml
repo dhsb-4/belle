@@ -15,21 +15,7 @@
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!--查询单个-->
-    <select id="queryById" resultMap="UserMap">
-        select
-          usr_id, usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark
-        from belle.user
-        where usr_id = #{usrId}
-    </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="UserMap">
-        select
-          usr_id, usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark
-        from belle.user
-        limit #{offset}, #{limit}
-    </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
@@ -70,50 +56,6 @@
         </where>
     </select>
 
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="usrId" useGeneratedKeys="true">
-        insert into belle.user(usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark)
-        values (#{usrAccount}, #{usrName}, #{usrPassword}, #{roleId}, #{usrEmail}, #{usrPhone}, #{usrUrl}, #{usrImgurl}, #{remark})
-    </insert>
 
-    <!--通过主键修改数据-->
-    <update id="update">
-        update belle.user
-        <set>
-            <if test="usrAccount != null">
-                usr_account = #{usrAccount},
-            </if>
-            <if test="usrName != null and usrName != ''">
-                usr_name = #{usrName},
-            </if>
-            <if test="usrPassword != null and usrPassword != ''">
-                usr_password = #{usrPassword},
-            </if>
-            <if test="roleId != null">
-                role_id = #{roleId},
-            </if>
-            <if test="usrEmail != null and usrEmail != ''">
-                usr_email = #{usrEmail},
-            </if>
-            <if test="usrPhone != null and usrPhone != ''">
-                usr_phone = #{usrPhone},
-            </if>
-            <if test="usrUrl != null and usrUrl != ''">
-                usr_url = #{usrUrl},
-            </if>
-            <if test="usrImgurl != null and usrImgurl != ''">
-                usr_imgurl = #{usrImgurl},
-            </if>
-            <if test="remark != null and remark != ''">
-                remark = #{remark},
-            </if>
-        </set>
-        where usr_id = #{usrId}
-    </update>
-
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from belle.user where usr_id = #{usrId}
-    </delete>
 
 </mapper>

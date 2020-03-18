@@ -8,9 +8,8 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tsp.belle.entity.Resource;
 import com.tsp.belle.service.ResourceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class ResourceController extends ApiController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private ResourceService resourceService;
 
     /**

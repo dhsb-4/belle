@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -20,6 +21,7 @@ import java.io.Serializable;
 @Data
 public class Dict extends Model<Dict> {
     //id
+    @TableId
     private Long dictId;
     //类型
     private String dictType;

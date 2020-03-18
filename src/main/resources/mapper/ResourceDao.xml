@@ -14,21 +14,7 @@
         <result property="resourceRemark" column="resource_remark" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!--查询单个-->
-    <select id="queryById" resultMap="ResourceMap">
-        select
-          resource_id, resource_name, resource_type_id, resource_url, upload_date, download_count, upload_name, browse_count, resource_remark
-        from belle.resource
-        where resource_id = #{resourceId}
-    </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="ResourceMap">
-        select
-          resource_id, resource_name, resource_type_id, resource_url, upload_date, download_count, upload_name, browse_count, resource_remark
-        from belle.resource
-        limit #{offset}, #{limit}
-    </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ResourceMap">
@@ -65,48 +51,5 @@
             </if>
         </where>
     </select>
-
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="resourceId" useGeneratedKeys="true">
-        insert into belle.resource(resource_name, resource_type_id, resource_url, upload_date, download_count, upload_name, browse_count, resource_remark)
-        values (#{resourceName}, #{resourceTypeId}, #{resourceUrl}, #{uploadDate}, #{downloadCount}, #{uploadName}, #{browseCount}, #{resourceRemark})
-    </insert>
-
-    <!--通过主键修改数据-->
-    <update id="update">
-        update belle.resource
-        <set>
-            <if test="resourceName != null and resourceName != ''">
-                resource_name = #{resourceName},
-            </if>
-            <if test="resourceTypeId != null">
-                resource_type_id = #{resourceTypeId},
-            </if>
-            <if test="resourceUrl != null and resourceUrl != ''">
-                resource_url = #{resourceUrl},
-            </if>
-            <if test="uploadDate != null">
-                upload_date = #{uploadDate},
-            </if>
-            <if test="downloadCount != null">
-                download_count = #{downloadCount},
-            </if>
-            <if test="uploadName != null and uploadName != ''">
-                upload_name = #{uploadName},
-            </if>
-            <if test="browseCount != null and browseCount != ''">
-                browse_count = #{browseCount},
-            </if>
-            <if test="resourceRemark != null and resourceRemark != ''">
-                resource_remark = #{resourceRemark},
-            </if>
-        </set>
-        where resource_id = #{resourceId}
-    </update>
-
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from belle.resource where resource_id = #{resourceId}
-    </delete>
 
 </mapper>

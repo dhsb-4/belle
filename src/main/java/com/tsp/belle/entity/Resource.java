@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
 @Data
 public class Resource extends Model<Resource> {
     //id
+    @TableId
     private Integer resourceId;
     //资源名称
     private String resourceName;

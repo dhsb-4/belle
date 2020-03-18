@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -19,7 +20,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 public class User extends Model<User> {
-    
+    @TableId
     private Long usrId;
     //登录账号
     private Long usrAccount;

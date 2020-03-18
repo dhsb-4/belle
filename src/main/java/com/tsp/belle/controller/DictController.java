@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.entity.Dict;
 import com.tsp.belle.service.DictService;
 import org.springframework.web.bind.annotation.*;
@@ -84,4 +85,12 @@ public class DictController extends ApiController {
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.dictService.removeByIds(idList));
     }
+
+
+    @GetMapping("tt")
+    public R get(String dictType){
+        // TODO 实现类未编写完成
+        return failed(ResultCode.server_failed);
+    }
+
 }
