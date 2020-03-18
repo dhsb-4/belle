@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsp.belle.dao.RoleDao">
+
+    <resultMap type="com.tsp.belle.entity.Role" id="RoleMap">
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="roleDesc" column="role_desc" jdbcType="VARCHAR"/>
+        <result property="roleRemark" column="role_remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RoleMap">
+        select
+          role_id, role_name, role_desc, role_remark
+        from belle.role
+        where role_id = #{roleId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="RoleMap">
+        select
+          role_id, role_name, role_desc, role_remark
+        from belle.role
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="RoleMap">
+        select
+          role_id, role_name, role_desc, role_remark
+        from belle.role
+        <where>
+            <if test="roleId != null">
+                and role_id = #{roleId}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                and role_name = #{roleName}
+            </if>
+            <if test="roleDesc != null and roleDesc != ''">
+                and role_desc = #{roleDesc}
+            </if>
+            <if test="roleRemark != null and roleRemark != ''">
+                and role_remark = #{roleRemark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="roleId" useGeneratedKeys="true">
+        insert into belle.role(role_name, role_desc, role_remark)
+        values (#{roleName}, #{roleDesc}, #{roleRemark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update belle.role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="roleDesc != null and roleDesc != ''">
+                role_desc = #{roleDesc},
+            </if>
+            <if test="roleRemark != null and roleRemark != ''">
+                role_remark = #{roleRemark},
+            </if>
+        </set>
+        where role_id = #{roleId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from belle.role where role_id = #{roleId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsp.belle.dao.LoginInfoDao">
+
+    <resultMap type="com.tsp.belle.entity.LoginInfo" id="LoginInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="loginToken" column="login_token" jdbcType="VARCHAR"/>
+        <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
+        <result property="loginDevice" column="login_device" jdbcType="VARCHAR"/>
+        <result property="loginFlag" column="login_flag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LoginInfoMap">
+        select
+          id, login_token, login_time, login_device, login_flag
+        from belle.login_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LoginInfoMap">
+        select
+          id, login_token, login_time, login_device, login_flag
+        from belle.login_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LoginInfoMap">
+        select
+          id, login_token, login_time, login_device, login_flag
+        from belle.login_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="loginToken != null and loginToken != ''">
+                and login_token = #{loginToken}
+            </if>
+            <if test="loginTime != null">
+                and login_time = #{loginTime}
+            </if>
+            <if test="loginDevice != null and loginDevice != ''">
+                and login_device = #{loginDevice}
+            </if>
+            <if test="loginFlag != null and loginFlag != ''">
+                and login_flag = #{loginFlag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into belle.login_info(login_token, login_time, login_device, login_flag)
+        values (#{loginToken}, #{loginTime}, #{loginDevice}, #{loginFlag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update belle.login_info
+        <set>
+            <if test="loginToken != null and loginToken != ''">
+                login_token = #{loginToken},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime},
+            </if>
+            <if test="loginDevice != null and loginDevice != ''">
+                login_device = #{loginDevice},
+            </if>
+            <if test="loginFlag != null and loginFlag != ''">
+                login_flag = #{loginFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from belle.login_info where id = #{id}
+    </delete>
+
+</mapper>
