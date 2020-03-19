@@ -1,6 +1,5 @@
 package com.tsp.belle.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -14,14 +13,13 @@ import java.io.Serializable;
  * (Dict)表实体类
  *
  * @author likewindz
- * @since 2020-03-18 18:47:25
+ * @since 2020-03-19 15:10:04
  */
-@EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("serial")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Dict extends Model<Dict> {
     //id
-    @TableId
     private Long dictId;
     //类型
     private String dictType;

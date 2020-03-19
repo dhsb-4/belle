@@ -8,8 +8,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.entity.Dict;
-import com.tsp.belle.entity.Role;
-import com.tsp.belle.entity.User;
+import com.tsp.belle.exception.BelleException;
 import com.tsp.belle.service.DictService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ import java.util.List;
  * (Dict)表控制层
  *
  * @author likewindz
- * @since 2020-03-18 18:47:25
+ * @since 2020-03-19 15:10:04
  */
 @RestController
 @RequestMapping("dict")
@@ -85,14 +84,12 @@ public class DictController extends ApiController {
      */
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
+
         return success(this.dictService.removeByIds(idList));
     }
 
-
-    @GetMapping("tt")
-    public R get(String dictType){
-        // TODO 实现类未编写完成
-        return failed(ResultCode.server_failed);
+    @GetMapping("z")
+    public R delete1(@RequestParam("idList") List<Long> idList) {
+        throw BelleException.error(ResultCode.user_not_login);
     }
-
 }
