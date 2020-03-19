@@ -5,6 +5,8 @@ import lombok.Data;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.EqualsAndHashCode;
+
 import java.io.Serializable;
 
 /**
