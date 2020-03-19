@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 /**
- * (Role)表实体类
+ * (Carousel)表实体类
  *
  * @author likewindz
  * @since 2020-03-19 15:10:04
@@ -18,15 +18,15 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Role extends Model<Role> {
+public class Carousel extends Model<Carousel> {
     //id
-    private Long roleId;
-    //角色
-    private String roleName;
-    //拥有权限
-    private String roleDesc;
-    //备注
-    private String roleRemark;
+    private Integer carouselId;
+    //轮播图片路径
+    private String carouselImgUrl;
+    //轮播描述
+    private String carouselRemark;
+    //轮播音频路径
+    private String carouselMusicUrl;
 
 
 
@@ -37,6 +37,6 @@ public class Role extends Model<Role> {
      */
     @Override
     protected Serializable pkVal() {
-        return this.roleId;
+        return this.carouselId;
     }
     }

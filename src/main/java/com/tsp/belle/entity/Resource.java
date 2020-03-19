@@ -1,6 +1,5 @@
 package com.tsp.belle.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -15,14 +14,13 @@ import java.io.Serializable;
  * (Resource)表实体类
  *
  * @author likewindz
- * @since 2020-03-18 18:47:25
+ * @since 2020-03-19 15:10:04
  */
-@EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("serial")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Resource extends Model<Resource> {
     //id
-    @TableId
     private Integer resourceId;
     //资源名称
     private String resourceName;
@@ -40,6 +38,10 @@ public class Resource extends Model<Resource> {
     private String browseCount;
     //备注
     private String resourceRemark;
+    //图片路径
+    private String pictureUrl;
+    //视频或音乐的播放时间
+    private String resourceDuration;
 
 
 

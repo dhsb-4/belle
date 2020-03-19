@@ -1,14 +1,14 @@
 package com.tsp.belle.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tsp.belle.entity.Role;
+import com.tsp.belle.entity.Carousel;
 
 /**
- * (Role)表服务接口
+ * (Carousel)表服务接口
  *
  * @author likewindz
  * @since 2020-03-19 15:10:04
  */
-public interface RoleService extends IService<Role> {
+public interface CarouselService extends IService<Carousel> {
 
 }

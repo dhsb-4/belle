@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 
 /**
- * (LoginInfo)表实体类
+ * (Picture)表实体类
  *
  * @author likewindz
  * @since 2020-03-19 15:10:04
@@ -19,17 +19,25 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LoginInfo extends Model<LoginInfo> {
-    //id
+public class Picture extends Model<Picture> {
+    //id主键
     private Long id;
-    //登陆token
-    private String loginToken;
-    //登录时间 PC Android Apple
-    private Date loginTime;
-    //登录设备
-    private String loginDevice;
-    //登录状态 0 过期 1 正在登录 2 被挤下线
-    private String loginFlag;
+    //图片名字
+    private String picName;
+    //图片路径
+    private String picUrl;
+    //上传日期
+    private Date picUploadDate;
+    //下载次数
+    private Integer picDownloadCount;
+    //上传者
+    private String picUploadName;
+    //浏览次数
+    private String picBrowseCount;
+    //备注
+    private String picResourceRemark;
+    //图片类型
+    private String picType;
 
 
 

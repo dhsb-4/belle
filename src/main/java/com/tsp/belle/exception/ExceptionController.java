@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
-    public String toError(){
+    public String toError(Exception e){
+        e.printStackTrace();
         return "404";
     }
 

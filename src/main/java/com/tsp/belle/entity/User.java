@@ -1,6 +1,5 @@
 package com.tsp.belle.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.EqualsAndHashCode;
@@ -11,13 +10,13 @@ import java.io.Serializable;
  * (User)表实体类
  *
  * @author likewindz
- * @since 2020-03-18 18:47:26
+ * @since 2020-03-19 15:10:04
  */
-@EqualsAndHashCode(callSuper = true)
 @SuppressWarnings("serial")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class User extends Model<User> {
-    @TableId
+    
     private Long usrId;
     //登录账号
     private Long usrAccount;
