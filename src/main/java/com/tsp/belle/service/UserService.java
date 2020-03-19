@@ -15,6 +15,6 @@ public interface UserService extends IService<User> {
      * @param usrAccount
      * @param usrPassword
      */
-    int login(Integer usrAccount,String usrPassword);
+    User login(Integer usrAccount,String usrPassword);
 
 }
