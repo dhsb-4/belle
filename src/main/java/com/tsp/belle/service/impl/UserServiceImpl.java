@@ -18,16 +18,20 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     @Autowired
     private UserDao userDao;
     @Override
-    public User login(Integer usrAccount, String usrPassword) {
+    public User login(Long usrAccount, String usrPassword) {
         User user=null;
         user=userDao.login(usrAccount);
         if (user!=null){
             if (user.getUsrPassword()!=null&&usrPassword.equals(user.getUsrPassword())){
+                System.out.println("密码:  "+usrPassword);
+                System.out.println("登陆成功!");
                 return user;
             }else {
+                System.out.println("密码错误!");
                 return null;
             }
         }else {
+            System.out.println("不存在此账号!");
             return user;
         }
     }

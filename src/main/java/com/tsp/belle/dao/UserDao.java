@@ -16,6 +16,6 @@ public interface UserDao extends BaseMapper<User> {
      * @param usrAccount
      * @return
      */
-    User login(@Param("usrAccount") Integer usrAccount);
+    User login(@Param("usrAccount") Long usrAccount);
 
 }

@@ -2,6 +2,8 @@ package com.tsp.belle.controller;
 
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
@@ -91,11 +93,16 @@ public class UserController extends ApiController {
 
 
     @PostMapping(value = "/dologin")
-    public Map login(@RequestBody User user){
-        Map<String,Object> resMap=new HashMap<String, Object>();
-
-
-        return  resMap;
+    @ResponseBody
+    public Map login(@RequestBody User user1){
+        Map resMap=new HashMap();
+        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword());
+        if (user!=null){
+            resMap.put("result","success");
+        }else {
+            resMap.put("result","failed");
+        }
+        return resMap;
     }
 
 }

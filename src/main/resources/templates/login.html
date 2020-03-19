@@ -80,10 +80,11 @@
                     contentType: 'application/json',
                     data: JSON.stringify(obj),
                     success: function (result) {
-                        if (result == 1) {
+                        if (result=='success') {
                             alert("登录成功");
 
                         } else{
+                            alert(result)
                             alert("账号或密码不正确");
 
                         }
