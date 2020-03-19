@@ -23,6 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("loginInfo")
 public class LoginInfoController extends ApiController {
+
+
+
     /**
      * 服务对象
      */

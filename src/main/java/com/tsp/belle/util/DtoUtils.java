@@ -7,7 +7,7 @@ public class DtoUtils<Dto, Do> {
 	/**
 	 * dot 转换为Do 工具类
 	 * 
-	 * @param dtoEntity
+	 * @param dtoEntity vo domain dto pojo
 	 * @param doClass
 	 * @return
 	 */

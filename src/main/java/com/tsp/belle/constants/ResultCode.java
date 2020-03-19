@@ -11,7 +11,10 @@ public enum  ResultCode implements IErrorCode {
     /**
      *  错误返回码 枚举集
      */
-    server_failed(500,"服务器错误,请稍后重试");
+    server_failed(500,"服务器错误,请稍后重试"),
+    server_timeout(501,"服务器连接超时"),
+    user_not_login(301,"用户未登录")
+    ;
 
     private long code;
     private String message;

@@ -7,8 +7,10 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tsp.belle.constants.ResultCode;
+import com.tsp.belle.dto.dict.DictDto;
 import com.tsp.belle.entity.Dict;
 import com.tsp.belle.service.DictService;
+import com.tsp.belle.util.DtoUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +27,7 @@ import java.util.List;
 @RequestMapping("dict")
 public class DictController extends ApiController {
     /**
-     * 服务对象
+     * 服务对象jdbc:mysql://115.28.107.89:3306/belle?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
      */
     @Resource
     private DictService dictService;
@@ -87,10 +89,6 @@ public class DictController extends ApiController {
     }
 
 
-    @GetMapping("tt")
-    public R get(String dictType){
-        // TODO 实现类未编写完成
-        return failed(ResultCode.server_failed);
-    }
+
 
 }
