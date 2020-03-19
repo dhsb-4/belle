@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head>
 
     <!-- Basic Page Needs
@@ -18,15 +18,15 @@
     
     <!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="../../static/css/picture/lightbox.css">
-	<link rel="stylesheet" href="../../static/css/picture/zerogrid.css">
-	<link rel="stylesheet" href="../../static/css/picture/style.css">
-	<link rel="stylesheet" href="../../static/css/picture/menu.css">
-	<link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
-	
-	<script src="../../static/js/jquery1111.min.js" type="text/javascript"></script>
-	<script src="../../static/js/script.js"></script>
+	<link rel="stylesheet" href="../../static/css/picture/lightbox.css" th:href="@{/css/picture/lightbox.css}">
+	<link rel="stylesheet" href="../../static/css/picture/zerogrid.css" th:href="@{/css/picture/zerogrid.css}">
+	<link rel="stylesheet" href="../../static/css/picture/style.css" th:href="@{/css/picture/style.css}">
+	<link rel="stylesheet" href="../../static/css/picture/menu.css" th:href="@{/css/picture/menu.css}">
+	<link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" th:href="@{/css/picture/font-awesome.min.css}">
+
+
+	<script src="../../static/js/jquery1111.min.js" type="text/javascript" th:src="@{/js/jquery1111.min.js}"></script>
+	<script src="../../static/js/script.js" th:src="@{/js/jscript.js}"></script>
 	
 	<!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>
@@ -45,37 +45,8 @@
 <div class="wrap-body">
 
 <!--////////////////////////////////////Header-->
-<header >
-	<div class="zerogrid">
-		<div class="wrap-header">
-			<div class="logo t-center"><a href="index.html"><img src="../../static/images/picture/logo.png"/></a></div>	
-			<div id='cssmenu' class="align-center">
-				<ul>
-				   <li><a href='index.html'><span>Home</span></a></li>
-				   <li><a href='single.html'><span>About</span></a></li>
-				   <li class="active"><a href='gallery.html'><span>Gallery</span></a></li>
-				   <li class=' has-sub'><a href='archive.html'><span>Blog</span></a>
-					  <ul>
-						 <li class='has-sub'><a href='#'><span>Item 1</span></a>
-							<ul>
-							   <li><a href='#'><span>Sub Item</span></a></li>
-							   <li class='last'><a href='#'><span>Sub Item</span></a></li>
-							</ul>
-						 </li>
-						 <li class='has-sub'><a href='#'><span>Item 2</span></a>
-							<ul>
-							   <li><a href='#'><span>Sub Item</span></a></li>
-							   <li class='last'><a href='#'><span>Sub Item</span></a></li>
-							</ul>
-						 </li>
-					  </ul>
-				   </li>
-				   <li class='last'><a href='contact.html'><span>Contact</span></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</header>
+	<header th:include="picture/header :: header">
+	</header>
 
 <section id="container">
 	<div class="wrap-container">
