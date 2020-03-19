@@ -34,8 +34,8 @@
       </div>
     <![endif]-->
     <!--[if lt IE 9]>
-		<script src="../../static/js/html5.js"></script>
-		<script src="../../static/js/css3-mediaqueries.js"></script>
+		<script src="../../static/js/html5.js" th:src="@{/js/html5.js}"></script>
+		<script src="../../static/js/css3-mediaqueries.js" th:src="@{/js/css3-mediaqueries.js}"></script>
 	<![endif]-->
     
 </head>
@@ -59,7 +59,7 @@
 					</div>
 					<article>
 						<div class="art-header">
-							<img src="../../static/images/picture/1.jpg"/>
+							<img th:src="@{/images/picture/1.jpg}" src="../../static/images/picture/1.jpg"/>
 						</div>
 						<div class="art-content">
 							<h1 class="entry-title">The title on the article</h1>
