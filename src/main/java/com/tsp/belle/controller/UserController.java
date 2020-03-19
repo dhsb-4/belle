@@ -95,13 +95,14 @@ public class UserController extends ApiController {
     @PostMapping(value = "/dologin")
     @ResponseBody
     public Map login(@RequestBody User user1){
-        Map resMap=new HashMap();
+        Map<String,Object> resMap=new HashMap();
         User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword());
         if (user!=null){
-            resMap.put("result","success");
+            resMap.put("resultMsg","success");
         }else {
-            resMap.put("result","failed");
+            resMap.put("resultMsg","failed");
         }
+        //TODO 写到这里还有东西没完善
         return resMap;
     }
 

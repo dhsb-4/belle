@@ -79,12 +79,13 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify(obj),
-                    success: function (result) {
-                        if (result=='success') {
+                    success: function (data) {
+
+                        if (data.resultMsg=="success") {
                             alert("登录成功");
 
                         } else{
-                            alert(result)
+                            alert(msg)
                             alert("账号或密码不正确");
 
                         }
