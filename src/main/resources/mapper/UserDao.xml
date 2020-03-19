@@ -55,7 +55,11 @@
             </if>
         </where>
     </select>
-
+    <!--使用账号登陆-->
+    <select id="login" parameterType="INTEGER">
+        select usr_id, usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark
+        where usr_account=#{usrAccount}
+    </select>
 
 
 </mapper>

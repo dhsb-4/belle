@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (User)表控制层
@@ -84,4 +86,16 @@ public class UserController extends ApiController {
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.userService.removeByIds(idList));
     }
+
+
+
+
+    @PostMapping(value = "/dologin")
+    public Map login(@RequestBody User user){
+        Map<String,Object> resMap=new HashMap<String, Object>();
+
+
+        return  resMap;
+    }
+
 }

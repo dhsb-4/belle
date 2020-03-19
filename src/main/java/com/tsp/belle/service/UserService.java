@@ -10,5 +10,11 @@ import com.tsp.belle.entity.User;
  * @since 2020-03-19 15:10:04
  */
 public interface UserService extends IService<User> {
+    /**
+     * 登陆方法
+     * @param usrAccount
+     * @param usrPassword
+     */
+    int login(Integer usrAccount,String usrPassword);
 
 }
