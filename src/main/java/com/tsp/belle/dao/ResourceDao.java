@@ -7,7 +7,7 @@ import com.tsp.belle.entity.Resource;
  * (Resource)表数据库访问层
  *
  * @author likewindz
- * @since 2020-03-18 18:47:25
+ * @since 2020-03-19 15:10:04
  */
 public interface ResourceDao extends BaseMapper<Resource> {
 

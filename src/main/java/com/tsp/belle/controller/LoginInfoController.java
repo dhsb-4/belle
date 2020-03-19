@@ -18,14 +18,11 @@ import java.util.List;
  * (LoginInfo)表控制层
  *
  * @author likewindz
- * @since 2020-03-18 18:47:25
+ * @since 2020-03-19 15:10:04
  */
 @RestController
 @RequestMapping("loginInfo")
 public class LoginInfoController extends ApiController {
-
-
-
     /**
      * 服务对象
      */

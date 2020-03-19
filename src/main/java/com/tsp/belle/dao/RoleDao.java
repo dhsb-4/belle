@@ -7,7 +7,7 @@ import com.tsp.belle.entity.Role;
  * (Role)表数据库访问层
  *
  * @author likewindz
- * @since 2020-03-18 18:47:26
+ * @since 2020-03-19 15:10:04
  */
 public interface RoleDao extends BaseMapper<Role> {
 

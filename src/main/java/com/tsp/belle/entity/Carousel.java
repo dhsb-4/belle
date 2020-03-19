@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
 /**
- * (Dict)表实体类
+ * (Carousel)表实体类
  *
  * @author likewindz
  * @since 2020-03-19 15:10:04
@@ -16,17 +16,15 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Dict extends Model<Dict> {
+public class Carousel extends Model<Carousel> {
     //id
-    private Long dictId;
-    //类型
-    private String dictType;
-    //名字
-    private String dictName;
-    //实际值
-    private String dictValue;
-    
-    private Long dictParentId;
+    private Integer carouselId;
+    //轮播图片路径
+    private String carouselImgUrl;
+    //轮播描述
+    private String carouselRemark;
+    //轮播音频路径
+    private String carouselMusicUrl;
 
 
 
@@ -37,6 +35,6 @@ public class Dict extends Model<Dict> {
      */
     @Override
     protected Serializable pkVal() {
-        return this.dictId;
+        return this.carouselId;
     }
     }
