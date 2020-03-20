@@ -1,26 +1,27 @@
 ﻿<!DOCTYPE HTML>
-<html lang="zxx">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Moviepoint - Online Movie,Vedio and TV Show HTML Template</title>
 		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="../../static/images/video/favcion.png" />
+		<link rel="icon" th:href="@{/images/video/favcion.png}" href="../../static/images/video/favcion.png" />
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/bootstrap.min.css" media="all" />
+		<link rel="stylesheet" th:href="@{/css/video/bootstrap.min.css}" href="../../static/css/video/bootstrap.min.css" media="all" />
 		<!-- Slick nav CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/slicknav.min.css" media="all" />
+		<link rel="stylesheet" th:href="@{/css/video/slicknav.min.css}" href="../../static/css/video/slicknav.min.css" media="all" />
 		<!-- Iconfont CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/icofont.css" media="all" />
+		<link rel="stylesheet" th:href="@{/css/video/icofont.css}" href="../../static/css/video/icofont.css" media="all" />
 		<!-- Owl carousel CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/owl.carousel.css">
+		<link rel="stylesheet" th:href="@{/css/video/owl.carousel.css}" href="../../static/css/video/owl.carousel.css">
 		<!-- Popup CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/magnific-popup.css">
+		<link rel="stylesheet" th:href="@{/css/video/magnific-popup.css}" href="../../static/css/video/magnific-popup.css">
 		<!-- Main style CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/style.css" media="all" />
+		<link rel="stylesheet" th:href="@{/css/video/style.css}" href="../../static/css/video/style.css" media="all" />
 		<!-- Responsive CSS -->
-		<link rel="stylesheet" type="text/css" href="../../static/css/video/responsive.css" media="all" />
+		<link rel="stylesheet" th:href="@{/css/video/responsive.css}" href="../../static/css/video/responsive.css" media="all" />
 		<!--[if lt IE 9]>
 		  <script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -36,7 +37,7 @@
 			<div class="container">
 				<div class="header-area">
 					<div class="logo">
-						<a href="index.html"><img src="../../static/images/video/logo.png" alt="logo" /></a>
+						<a href="index.html"><img th:src="@{/images/video/logo.png}" src="../../static/images/video/logo.png" alt="logo" /></a>
 					</div>
 					<div class="header-right">
 						<form action="#">
@@ -341,7 +342,7 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6 col-md-5">
 							<div class="hero-area-content">
-								<img src="../../static/images/video/slide2.png" alt="about" />
+								<img th:src="@{/images/video/slide2.png}" src="../../static/images/video/slide2.png" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-7">
@@ -361,25 +362,25 @@
 								<h3>Cast:</h3>
 								<div class="slide-cast">
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast1.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast2.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast2.png}" src="../../static/images/video/cast/cast2.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast3.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast3.png}" src="../../static/images/video/cast/cast3.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast4.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast4.png}" src="../../static/images/video/cast/cast4.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast5.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast5.png}" src="../../static/images/video/cast/cast5.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast6.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast6.png}" src="../../static/images/video/cast/cast6.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast7.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast7.png}" src="../../static/images/video/cast/cast7.png" alt="about" />
 									</div>
 									<div class="single-slide-cast text-center">
 										5+
@@ -395,7 +396,7 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6 col-md-5">
 							<div class="hero-area-content">
-								<img src="../../static/images/video/slide1.png" alt="about" />
+								<img th:src="@{/images/video/slide1.png}" src="../../static/images/video/slide1.png" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-7">
@@ -415,25 +416,25 @@
 								<h3>Cast:</h3>
 								<div class="slide-cast">
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast1.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast2.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast2.png}" src="../../static/images/video/cast/cast2.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast3.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast3.png}" src="../../static/images/video/cast/cast3.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast4.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast4.png}" src="../../static/images/video/cast/cast4.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast5.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast5.png}" src="../../static/images/video/cast/cast5.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast6.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast6.png}" src="../../static/images/video/cast/cast6.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast7.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast7.png}" src="../../static/images/video/cast/cast7.png" alt="about" />
 									</div>
 									<div class="single-slide-cast text-center">
 										5+
@@ -449,7 +450,7 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6 col-md-5">
 							<div class="hero-area-content">
-								<img src="../../static/images/video/slide3.png" alt="about" />
+								<img th:src="@{/images/video/slide3.png}" src="../../static/images/video/slide3.png" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-7">
@@ -469,25 +470,25 @@
 								<h3>Cast:</h3>
 								<div class="slide-cast">
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast1.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast2.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast2.png}" src="../../static/images/video/cast/cast2.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast3.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast3.png}" src="../../static/images/video/cast/cast3.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast4.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast4.png}" src="../../static/images/video/cast/cast4.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast5.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast5.png}" src="../../static/images/video/cast/cast5.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast6.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast6.png}" src="../../static/images/video/cast/cast6.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
-										<img src="../../static/images/video/cast/cast7.png" alt="about" />
+										<img th:src="@{/images/video/cast/cast7.png}" src="../../static/images/video/cast/cast7.png" alt="about" />
 									</div>
 									<div class="single-slide-cast text-center">
 										5+
@@ -506,7 +507,7 @@
 						<div class="row hero-area-slide">
 							<div class="col-lg-6">
 								<div class="hero-area-content">
-									<img src="../../static/images/video/slide3.png" alt="about" />
+									<img th:src="@{/images/video/slide3.png}" src="../../static/images/video/slide3.png" alt="about" />
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -526,25 +527,25 @@
 									<h3>Cast:</h3>
 									<div class="slide-cast">
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast1.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast2.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast2.png}" src="../../static/images/video/cast/cast2.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast3.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast3.png}" src="../../static/images/video/cast/cast3.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast4.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast4.png}" src="../../static/images/video/cast/cast4.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast5.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast5.png}" src="../../static/images/video/cast/cast5.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast6.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast6.png}" src="../../static/images/video/cast/cast6.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast7.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast7.png}" src="../../static/images/video/cast/cast7.png" alt="about" />
 										</div>
 										<div class="single-slide-cast text-center">
 											5+
@@ -562,7 +563,7 @@
 						<div class="row hero-area-slide">
 							<div class="col-lg-6">
 								<div class="hero-area-content">
-									<img src="../../static/images/video/slide1.png" alt="about" />
+									<img th:src="@{/images/video/slide1.png}" src="../../static/images/video/slide1.png" alt="about" />
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -582,25 +583,25 @@
 									<h3>Cast:</h3>
 									<div class="slide-cast">
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast1.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast2.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast2.png}" src="../../static/images/video/cast/cast2.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast3.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast3.png}" src="../../static/images/video/cast/cast3.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast4.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast4.png}" src="../../static/images/video/cast/cast4.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast5.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast5.png}" src="../../static/images/video/cast/cast5.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast6.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast6.png}" src="../../static/images/video/cast/cast6.png" alt="about" />
 										</div>
 										<div class="single-slide-cast">
-											<img src="../../static/images/video/cast/cast7.png" alt="about" />
+											<img th:src="@{/images/video/cast/cast7.png}" src="../../static/images/video/cast/cast7.png" alt="about" />
 										</div>
 										<div class="single-slide-cast text-center">
 											5+
@@ -644,7 +645,7 @@
 							<div class="col-md-4 col-sm-6 soon released">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio1.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -667,7 +668,7 @@
 							<div class="col-md-4 col-sm-6 top">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio2.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio2.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -690,7 +691,7 @@
 							<div class="col-md-4 col-sm-6 soon">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio3.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio3.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -713,7 +714,7 @@
 							<div class="col-md-4 col-sm-6 top released">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio4.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio4.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -736,7 +737,7 @@
 							<div class="col-md-4 col-sm-6 released">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio5.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio5.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -759,7 +760,7 @@
 							<div class="col-md-4 col-sm-6 soon top">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
-										<img src="../../static/images/video/portfolio/portfolio6.png" alt="portfolio" />
+										<img th:src="@{/images/video/portfolio/portfolio6.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
 										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 											<i class="icofont icofont-ui-play"></i>
 										</a>
@@ -783,10 +784,10 @@
 					</div>
 					<div class="col-lg-3 text-center text-lg-left">
 					    <div class="portfolio-sidebar">
-							<img src="../../static/images/video/sidebar/sidebar1.png" alt="sidebar" />
-							<img src="../../static/images/video/sidebar/sidebar2.png" alt="sidebar" />
-							<img src="../../static/images/video/sidebar/sidebar3.png" alt="sidebar" />
-							<img src="../../static/images/video/sidebar/sidebar4.png" alt="sidebar" />
+							<img th:src="@{/images/video/sidebar/sidebar1.png}" src="../../static/images/video/sidebar/sidebar1.png" alt="sidebar" />
+							<img th:src="@{/images/video/sidebar/sidebar2.png}" src="../../static/images/video/sidebar/sidebar2.png" alt="sidebar" />
+							<img th:src="@{/images/video/sidebar/sidebar3.png}" src="../../static/images/video/sidebar/sidebar3.png" alt="sidebar" />
+							<img th:src="@{/images/video/sidebar/sidebar4.png}" src="../../static/images/video/sidebar/sidebar4.png" alt="sidebar" />
 						</div>
 					</div>
 				</div>
@@ -806,7 +807,7 @@
 				<div class="row">
                     <div class="col-md-9">
 						<div class="video-area">
-							<img src="../../static/images/video/video/video1.png" alt="video" />
+							<img th:src="@{/images/video/video/video1.png}" src="../../static/images/video/video/video1.png" alt="video" />
 							<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 								<i class="icofont icofont-ui-play"></i>
 							</a>
@@ -829,7 +830,7 @@
 						<div class="row">
 							<div class="col-md-12 col-sm-6">
 								<div class="video-area">
-									<img src="../../static/images/video/video/video2.png" alt="video" />
+									<img th:src="@{/images/video/video/video2.png}" src="../../static/images/video/video/video2.png" alt="video" />
 									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 										<i class="icofont icofont-ui-play"></i>
 									</a>
@@ -837,7 +838,7 @@
 							</div>
 							<div class="col-md-12 col-sm-6">
 								<div class="video-area">
-									<img src="../../static/images/video/video/video3.png" alt="video" />
+									<img th:src="@{/images/video/video/video3.png}" src="../../static/images/video/video/video3.png" alt="video" />
 									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
 										<i class="icofont icofont-ui-play"></i>
 									</a>
@@ -937,7 +938,7 @@
 				<div class="row">
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<img src="../../static/images/video/logo.png" alt="about" />
+							<img th:src="@{/images/video/logo.png}" src="../../static/images/video/logo.png" alt="about" />
 							<p>7th Harley Place, London W1G 8LZ United Kingdom</p>
 							<h6><span>Call us: </span>(+880) 111 222 3456</h6>
 						</div>
@@ -995,19 +996,18 @@
 				</div>
 			</div>
 		</footer><!-- footer section end -->
-		<!-- jquery main JS -->
-		<script src="../../static/js/jquery.min.js"></script>
-		<!-- Bootstrap JS -->
-		<script src="../../static/js/bootstrap.min.js"></script>
-		<!-- Slick nav JS -->
-		<script src="../../static/js/jquery.slicknav.min.js"></script>
-		<!-- owl carousel JS -->
-		<script src="../../static/js/owl.carousel.min.js"></script>
-		<!-- Popup JS -->
-		<script src="../../static/js/jquery.magnific-popup.min.js"></script>
-		<!-- Isotope JS -->
-		<script src="../../static/js/isotope.pkgd.min.js"></script>
-		<!-- main JS -->
-		<script src="../../static/js/main.js"></script>
 	</body>
+	<script th:src="@{/js/jquery.min.js}" src="../../static/js/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script th:src="@{/js/bootstrap.min.js}" src="../../static/js/bootstrap.min.js"></script>
+	<!-- Slick nav JS -->
+	<script th:src="@{/js/jquery.slicknav.min.js}" src="../../static/js/jquery.slicknav.min.js"></script>
+	<!-- owl carousel JS -->
+	<script th:src="@{/js/owl.carousel.min.js}" src="../../static/js/owl.carousel.min.js"></script>
+	<!-- Popup JS -->
+	<script th:src="@{/js/jquery.magnific-popup.min.js}" src="../../static/js/jquery.magnific-popup.min.js"></script>
+	<!-- Isotope JS -->
+	<script th:src="@{/js/isotope.pkgd.min.js}" src="../../static/js/isotope.pkgd.min.js"></script>
+	<!-- main JS -->
+	<script th:src="@{/js/main.js}" src="../../static/js/main.js"></script>
 </html>

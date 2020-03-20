@@ -15,7 +15,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class User extends Model<User> {
+public class User extends Model<User> implements Serializable {
     
     private Long usrId;
     //登录账号
