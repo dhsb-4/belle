@@ -1,10 +1,12 @@
 
-function postJson(url,success,error) {
+function postJson(url,data,success,error) {
     $.ajax({
         url: url,
         method: "post",
-        success: function () {
-            success()
+        dataType: 'json',
+        data: JSON.stringify(data),
+        success: function (result) {
+            success(result)
         },
         error: function () {
             error()

@@ -7,6 +7,7 @@
     <title>登录</title>
     <link th:href="@{../css/login.css}" href="../static/css/login.css" rel="stylesheet">
     <script th:src="@{../js/jquery.min.js}" src="../static/js/jquery.min.js"></script>
+    <script src="../static/common/js/common.js" th:src="@{../common/js/common.js}"></script>
 </head>
 <body>
 <div class="dowebok">
@@ -18,6 +19,7 @@
     <div class="form-item">
         <input id="usrPassword" type="password" autocomplete="off" placeholder="登录密码" th:onfocus="checkUsrPassword()" onfocus="checkUsrPassword()">
         <p class="tip" id="MsgUsrPassword">用户或密码不正确</p>
+        <p class="tip" id="MsgUsrPasswordNull">请输入密码</p>
     </div>
     <div class="form-item">
         <button id="submit" th:onclick= "jump()" onclick= "return yz()">登 录</button>  <!--onclick属性添加点击事件-->
@@ -28,32 +30,19 @@
     </div>
 </div>
 <script layout:fragment="js">
-
-        /*function yz()                        //封装一个<body>中做成点击事件的函数
-        {
-            var usrName = document.getElementById("usrName").value;   //通过id名 找到 元素并重新 赋值
-            var usrPassword = document.getElementById("usrPassword").value;
-
-            if (usrName == "" || null)                //判断条件
-            {
-                var resultUsrName = document.getElementById("MsgUsrName");          //输出不满足条件的提示内容
-                resultUsrName.style.display = "block";
-                return false;
-            } else if (usrPassword == "" || null) {
-                var resultUsrPassword = document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
-                resultUsrPassword.style.display = "block";
-                return false;
-            } else {
-                return true;
-            }
-        }*/
-        function checkUsrName() {
+    /**
+     * 账号为空时，点击账号框消失提示
+     */
+    function checkUsrName() {
             var resultUsrName=document.getElementById("MsgUsrName");          //输出不满足条件的提示内容
             resultUsrName.style.display="none";
         }
+    //密码为空时，点击账号框消失提示
         function checkUsrPassword() {
-            var resultUsrPassword=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
+            var resultUsrPassword=document.getElementById("MsgUsrPasswordNull");          //输出不满足条件的提示内容
             resultUsrPassword.style.display="none";
+            var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
+            pwd.style.display="none";
         }
         //登录
         function jump() {
@@ -73,34 +62,20 @@
                 resultUsrPassword.style.display = "block";
                 return false;
             } else {
-                $.ajax({
-                    "url": "user/dologin",        //login是登录接口
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: JSON.stringify(obj),
-                    success: function (data) {
-
+                $.postJSON("user/dologin",obj,function (data) {
                         if (data.resultMsg=="success") {
                             alert("登录成功");
-
                         } else{
-                            alert(msg)
-                            alert("账号或密码不正确");
-
+                            var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
+                            pwd.style.display="block";
                         }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert('网络异常！尝试刷新网页解决问题')
-
+                    },function () {
+                        alert('网络异常！尝试刷新网页解决问题');
                     }
-                });
+                )
                 return true;
             }
         }
-
-
-
 </script>
 </body>
 </html>

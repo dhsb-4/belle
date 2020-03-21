@@ -8,11 +8,22 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tsp.belle.dto.user.UserDto;
 import com.tsp.belle.entity.User;
+import com.tsp.belle.service.RedisService;
 import com.tsp.belle.service.UserService;
+import com.tsp.belle.util.DtoUtils;
+import com.tsp.belle.util.UserAgentUtils;
+import eu.bitwalker.useragentutils.Browser;
+import eu.bitwalker.useragentutils.OperatingSystem;
+import eu.bitwalker.useragentutils.UserAgent;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +32,7 @@ import java.util.Map;
 /**
  * (User)表控制层
  *
- * @author likewindz
+ * @author 马运动
  * @since 2020-03-19 15:10:04
  */
 @RestController
@@ -32,6 +43,11 @@ public class UserController extends ApiController {
      */
     @Resource
     private UserService userService;
+    /**
+     * 缓存配置
+     */
+    @Resource
+    private RedisService redisService;
 
     /**
      * 分页查询所有数据
@@ -94,15 +110,22 @@ public class UserController extends ApiController {
 
     @PostMapping(value = "/dologin")
     @ResponseBody
-    public Map login(@RequestBody User user1){
+    public Map login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
         Map<String,Object> resMap=new HashMap();
-        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword());
-        if (user!=null){
+        String agent = request.getHeader("user-agent"); //获取设备信息
+        //user1.getUsrAccount() 登陆账号 user1.getUsrPassword() 登陆密码
+        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword()); //获取用户信息
+        String token=redisService.generateToken(agent,user.getUsrName());  //获取token
+        if (user!=null){ //登陆成功
+            UserDto userDto= DtoUtils.dtoToDo(user,UserDto.class);
+            redisService.save(token,userDto);
+            Cookie cookie = new Cookie("token_name",token);
+            cookie.setPath("/");
+            response.addCookie(cookie);
             resMap.put("resultMsg","success");
-        }else {
+        }else {  //登陆失败
             resMap.put("resultMsg","failed");
         }
-        //TODO 写到这里还有东西没完善
         return resMap;
     }
 
