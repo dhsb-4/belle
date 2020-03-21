@@ -1,0 +1,13 @@
+fdfs:
+  #连接超时时间
+  connect-timeout: 10000
+  #响应时间
+  so-timeout: 3000
+  # tracker 的ip加端口 默认的端口没修改所以是22122
+  tracker-list:
+    - 115.28.107.89:22122
+# 限制文件上传大小  单位是 byte
+spring:
+  servlet:
+    multipart:
+      max-file-size: 104857600
