@@ -521,5 +521,15 @@ h1 {
     margin: 1.8em -1.5em 0;
 }
 }
+/**
+改变text文本框属性
+ */
+input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 200px;
+}
 /*-- //responsive-design --*/
 
