@@ -64,17 +64,15 @@
             } else {
                 $.postJSON("user/dologin",obj,function (data) {
                         if (data.code===0) {
-                            alert(data.code)
                             alert("登录成功");
                         } else{
-                            alert(data.code)
-                            var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
+                            var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内
                             pwd.style.display="block";
                         }
                     },function () {
                         alert('网络异常！尝试刷新网页解决问题');
                     }
-                )
+                );
                 return true;
             }
         }

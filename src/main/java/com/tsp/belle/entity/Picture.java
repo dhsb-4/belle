@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class Picture extends Model<Picture> {
     //id主键
+    @TableId
     private Long id;
     //图片名字
     private String picName;
