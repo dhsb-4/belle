@@ -1,5 +1,6 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 
@@ -20,6 +21,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class Carousel extends Model<Carousel> {
     //id
+    @TableId
     private Integer carouselId;
     //轮播图片路径
     private String carouselImgUrl;

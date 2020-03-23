@@ -26,6 +26,18 @@ public class BelleException extends RuntimeException{
         return  belleException;
     }
 
+    public ResultCode resultCode(String message){
+        return forCode(message);
+    }
 
+
+    private ResultCode forCode(String message) {
+        for (ResultCode value : ResultCode.values()) {
+            if (value.getMsg().equals(message)) {
+                return value;
+            }
+        }
+        return ResultCode.server_failed;
+    }
 
 }
