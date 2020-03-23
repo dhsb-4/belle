@@ -27,7 +27,14 @@ public interface RedisService {
      * @param user
      * @throws Exception
      */
-     void save(String token, UserDto user) throws Exception;
+     void savePc(String token, UserDto user) throws Exception;
+    /**
+     * 保存token
+     * @param token
+     * @param user
+     * @throws Exception
+     */
+    void mobileSave(String token, UserDto user) throws Exception;
     /**
      * 验证token是否存在
      * @param token

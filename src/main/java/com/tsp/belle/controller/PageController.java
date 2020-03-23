@@ -20,9 +20,18 @@ public class PageController {
      * 跳转到登陆页面
      * @return
      */
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login.html")
     public String login(){
         return "login";
+    }
+
+    /**
+     * 跳转到注册页面
+     * @return
+     */
+    @RequestMapping(value = "signin")
+    public String register(){
+        return "signin";
     }
 
     @Autowired

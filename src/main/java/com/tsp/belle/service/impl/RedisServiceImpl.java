@@ -31,7 +31,7 @@ public class RedisServiceImpl implements RedisService {
     public String generateToken(String userAgentStr, String username) throws Exception {
         StringBuilder token = new StringBuilder("token:");
         //设备
-        String userAgent= UserAgentUtils.getDeviceType(userAgentStr); //判断
+        String userAgent= userAgentStr; //判断
 		token.append(userAgent+"-");
         //加密的用户名
         token.append(DigestUtils.md5Hex(username) + "-");
@@ -44,8 +44,13 @@ public class RedisServiceImpl implements RedisService {
     }
     @Transactional
     @Override
-    public void save(String token, UserDto user) throws Exception {
+    public void savePc(String token, UserDto user) throws Exception {
         redisUtil.set(token, user,2*60*60);
+    }
+    @Transactional
+    @Override
+    public void mobileSave(String token, UserDto user) throws Exception {
+        redisUtil.set(token, user);
     }
 
     @Override

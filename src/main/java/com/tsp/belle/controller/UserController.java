@@ -2,8 +2,6 @@ package com.tsp.belle.controller;
 
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
@@ -14,14 +12,9 @@ import com.tsp.belle.service.RedisService;
 import com.tsp.belle.service.UserService;
 import com.tsp.belle.util.DtoUtils;
 import com.tsp.belle.util.UserAgentUtils;
-import eu.bitwalker.useragentutils.Browser;
-import eu.bitwalker.useragentutils.OperatingSystem;
-import eu.bitwalker.useragentutils.UserAgent;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
@@ -71,7 +64,7 @@ public class UserController extends ApiController {
     public R selectOne(@PathVariable Serializable id) {
         return success(this.userService.getById(id));
     }
-
+//TODO 实现注册
     /**
      * 新增数据
      *
@@ -110,23 +103,26 @@ public class UserController extends ApiController {
 
     @PostMapping(value = "/dologin")
     @ResponseBody
-    public Map login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
+    public R login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
         Map<String,Object> resMap=new HashMap();
         String agent = request.getHeader("user-agent"); //获取设备信息
         //user1.getUsrAccount() 登陆账号 user1.getUsrPassword() 登陆密码
         User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword()); //获取用户信息
-        String token=redisService.generateToken(agent,user.getUsrName());  //获取token
+        String userAgent= UserAgentUtils.getDeviceType(agent); //判断是否为PC或者MOBILE
         if (user!=null){ //登陆成功
+            String token=redisService.generateToken(agent,user.getUsrName()); //获取token
             UserDto userDto= DtoUtils.dtoToDo(user,UserDto.class);
-            redisService.save(token,userDto);
-            Cookie cookie = new Cookie("token_name",token);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            if ("PC".equals(userAgent)){
+                redisService.savePc(token,userDto); //PC端
+            }else {
+                redisService.mobileSave(token,userDto); //移动端
+            }
+
             resMap.put("resultMsg","success");
         }else {  //登陆失败
             resMap.put("resultMsg","failed");
         }
-        return resMap;
+        return success(resMap);
     }
 
 }
