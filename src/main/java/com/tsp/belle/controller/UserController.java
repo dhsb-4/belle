@@ -103,11 +103,11 @@ public class UserController extends ApiController {
 
     @PostMapping(value = "/dologin")
     @ResponseBody
-    public R login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
+    public R login(@RequestBody User verify, HttpServletRequest request,HttpServletResponse response) throws Exception {
         Map<String,Object> resMap=new HashMap();
         String agent = request.getHeader("user-agent"); //获取设备信息
         //user1.getUsrAccount() 登陆账号 user1.getUsrPassword() 登陆密码
-        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword()); //获取用户信息
+        User user=userService.login(verify.getUsrAccount(),verify.getUsrPassword()); //获取用户信息
         String userAgent= UserAgentUtils.getDeviceType(agent); //判断是否为PC或者MOBILE
         if (user!=null){ //登陆成功
             String token=redisService.generateToken(agent,user.getUsrName()); //获取token
@@ -117,7 +117,6 @@ public class UserController extends ApiController {
             }else {
                 redisService.mobileSave(token,userDto); //移动端
             }
-
             resMap.put("resultMsg","success");
         }else {  //登陆失败
             resMap.put("resultMsg","failed");
