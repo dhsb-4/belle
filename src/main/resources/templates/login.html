@@ -63,9 +63,11 @@
                 return false;
             } else {
                 $.postJSON("user/dologin",obj,function (data) {
-                        if (data.resultMsg=="success") {
+                        if (data.code===0) {
+                            alert(data.code)
                             alert("登录成功");
                         } else{
+                            alert(data.code)
                             var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
                             pwd.style.display="block";
                         }

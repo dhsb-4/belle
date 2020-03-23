@@ -16,7 +16,8 @@ public enum  ResultCode implements IErrorCode {
     server_timeout(501,"服务器连接超时"),
     user_not_login(301,"用户未登录"),
     file_upload_error(777,"文件解析错误" )
-    , file_download_error(778,"文件下载出现异常" );
+    , file_download_error(778,"文件下载出现异常" ),
+    user_account_or_pwd_error(202,"用户或者密码错误");
 
     private long code;
     private String message;
