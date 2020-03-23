@@ -1,5 +1,6 @@
 package com.tsp.belle.config;
 
+import com.tsp.belle.constants.ConstPath;
 import com.tsp.belle.interceptor.TokenInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**").excludePathPatterns("/common/**","/js/**"
+                ,"/scss/**","/images/**",
+                "/sp/**","/fonts/**"
+                ,"/font-awesome/**","/main_banner/**"
+                ,"/css/**");
     }
 }

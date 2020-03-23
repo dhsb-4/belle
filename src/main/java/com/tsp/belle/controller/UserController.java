@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tsp.belle.annotation.Token;
 import com.tsp.belle.dto.user.UserDto;
 import com.tsp.belle.entity.User;
 import com.tsp.belle.service.RedisService;
@@ -57,6 +58,7 @@ public class UserController extends ApiController {
      * @return 所有数据
      */
     @GetMapping
+    @Token
     public R selectAll(Page<User> page, User user) {
         return success(this.userService.page(page, new QueryWrapper<>(user)));
     }
@@ -110,14 +112,19 @@ public class UserController extends ApiController {
 
     @PostMapping(value = "/dologin")
     @ResponseBody
-    public Map login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
-        Map<String,Object> resMap=new HashMap();
-        String agent = request.getHeader("user-agent"); //获取设备信息
+    public R login(@RequestBody User user1, HttpServletRequest request,HttpServletResponse response) throws Exception {
+        Map<String,Object> resMap=new HashMap<>();
+        //获取设备信息
+        String agent = request.getHeader("user-agent");
         //user1.getUsrAccount() 登陆账号 user1.getUsrPassword() 登陆密码
-        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword()); //获取用户信息
-        String token=redisService.generateToken(agent,user.getUsrName());  //获取token
-        if (user!=null){ //登陆成功
+        //获取用户信息
+        User user=userService.login(user1.getUsrAccount(),user1.getUsrPassword());
+
+        //登陆成功
+        if (user!=null){
             UserDto userDto= DtoUtils.dtoToDo(user,UserDto.class);
+            //获取token
+            String token=redisService.generateToken(agent,user.getUsrName());
             redisService.save(token,userDto);
             Cookie cookie = new Cookie("token_name",token);
             cookie.setPath("/");
@@ -126,7 +133,7 @@ public class UserController extends ApiController {
         }else {  //登陆失败
             resMap.put("resultMsg","failed");
         }
-        return resMap;
+        return success(resMap);
     }
 
 }

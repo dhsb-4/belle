@@ -1,5 +1,11 @@
 package com.tsp.belle.interceptor;
 
+import com.tsp.belle.annotation.Token;
+import com.tsp.belle.constants.ConstPath;
+import com.tsp.belle.entity.User;
+import com.tsp.belle.util.CookieUtils;
+import com.tsp.belle.util.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -14,16 +20,34 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod;
+
+        System.out.println(request.getRequestURL().toString());
         try {
-            handlerMethod =  (HandlerMethod) handler;
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Token annotation = handler.getClass().getAnnotation(Token.class);
+            if(annotation==null){
+                if(((HandlerMethod) handler).getMethodAnnotation(Token.class)!=null){
+                    annotation = handlerMethod.getMethodAnnotation(Token.class);
+                }
+            }
+            if(annotation!=null){
+                String token = CookieUtils.getToken(request, "token_name");
+                User user = (User) redisUtil.get(token);
+                if(token.contains("PC")){
+                    redisUtil.expire(token,60*60*2);
+                }
+            }
         }catch (ClassCastException e){
+            e.printStackTrace();
             response.sendError(404);
             return false;
         }
-        return super.preHandle(request, response, handler);
+        return true;
     }
 
     @Override
