@@ -1,7 +1,6 @@
 package com.tsp.belle.interceptor;
 
 import com.tsp.belle.annotation.Token;
-import com.tsp.belle.constants.ConstPath;
 import com.tsp.belle.entity.User;
 import com.tsp.belle.util.CookieUtils;
 import com.tsp.belle.util.RedisUtil;

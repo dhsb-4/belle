@@ -29,6 +29,8 @@ public class ExceptionController {
             R<Object> failed = null;
             if(e instanceof BelleException){
                 failed = R.failed(((BelleException) e).resultCode(e.getMessage()));
+            }else{
+                failed = R.failed(e.getMessage());
             }
             PrintWriter writer = null;
             try {

@@ -2,10 +2,12 @@ package com.tsp.belle.controller;
 
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageHelper;
 import com.tsp.belle.entity.Video;
 import com.tsp.belle.service.VideoService;
 import org.springframework.web.bind.annotation.*;
@@ -83,5 +85,13 @@ public class VideoController extends ApiController {
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.videoService.removeByIds(idList));
+    }
+
+
+
+    @GetMapping("getVideo")
+    public R getByPage(Page<Video> page, Video video){
+        PageHelper.startPage((int)page.getCurrent(),(int)page.getSize());
+        return  success(this.videoService.page(page, new QueryWrapper<>(video)));
     }
 }
