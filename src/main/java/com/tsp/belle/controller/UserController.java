@@ -1,11 +1,9 @@
 package com.tsp.belle.controller;
-
-
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.annotation.Token;
 import com.tsp.belle.dto.user.UserDto;
 import com.tsp.belle.entity.User;
@@ -107,27 +105,31 @@ public class UserController extends ApiController {
     @PostMapping(value = "/dologin")
     @ResponseBody
     public R login(@RequestBody User verify, HttpServletRequest request,HttpServletResponse response) throws Exception {
-        Map<String,Object> resMap=new HashMap();
         //获取设备信息
-
         String agent = request.getHeader("user-agent");
-        //user1.getUsrAccount() 登陆账号 user1.getUsrPassword() 登陆密码
-        User user=userService.login(verify.getUsrAccount(),verify.getUsrPassword()); //获取用户信息
-        String userAgent= UserAgentUtils.getDeviceType(agent); //判断是否为PC或者MOBILE
-        if (user!=null){ //登陆成功
-            String token=redisService.generateToken(agent,user.getUsrName()); //获取token
+        //verify.getUsrAccount() 登陆账号 verify.getUsrPassword() 登陆密码
+        //获取用户信息
+        User user=userService.login(verify.getUsrAccount(),verify.getUsrPassword());
+        //判断是否为PC或者MOBILE
+        String userAgent= UserAgentUtils.getDeviceType(agent);
+        //登陆成功
+        if (user!=null){
+            String token=redisService.generateToken(userAgent,user.getUsrName()); //获取token
             CookieUtils.setCookie(request,response,"token_name",token);
             UserDto userDto= DtoUtils.dtoToDo(user,UserDto.class);
             if ("PC".equals(userAgent)){
-                redisService.savePc(token,userDto); //PC端
+                //PC端
+                redisService.savePc(token,userDto);
             }else {
-                redisService.mobileSave(token,userDto); //移动端
+                //移动端
+                redisService.mobileSave(token,userDto);
             }
-            resMap.put("resultMsg","success");
-        }else {  //登陆失败
-            resMap.put("resultMsg","failed");
+            return success(0);
+            //登陆失败
+        }else {
+           return failed(ResultCode.user_account_or_pwd_error);
         }
-        return success(resMap);
+
     }
 
 }
