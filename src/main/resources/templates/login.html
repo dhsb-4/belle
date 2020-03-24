@@ -67,7 +67,7 @@
                             alert("登录成功");
                         } else{
                             var pwd=document.getElementById("MsgUsrPassword");          //输出不满足条件的提示内容
-                            pwd.text(data.msg);
+                            pwd.innerText = pwd;
                             pwd.style.display="block";
                         }
                     },function () {

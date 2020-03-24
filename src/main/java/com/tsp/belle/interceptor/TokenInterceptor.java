@@ -1,7 +1,9 @@
 package com.tsp.belle.interceptor;
 
 import com.tsp.belle.annotation.Token;
+import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.entity.User;
+import com.tsp.belle.exception.BelleException;
 import com.tsp.belle.util.CookieUtils;
 import com.tsp.belle.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if(annotation!=null){
                 String token = CookieUtils.getToken(request, "token_name");
                 User user = (User) redisUtil.get(token);
-                if(token.contains("PC")){
+                if(user!=null && token.contains("PC")){
                     redisUtil.expire(token,60*60*2);
                 }
             }
