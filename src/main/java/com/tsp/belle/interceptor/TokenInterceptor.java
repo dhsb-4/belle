@@ -13,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.annotation.Annotation;
 
 /**
  * @author likeWind
@@ -30,7 +31,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         System.out.println(request.getRequestURL().toString());
         try {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
-            Token annotation = handler.getClass().getAnnotation(Token.class);
+            Token annotation = handlerMethod.getMethod().getDeclaringClass().getAnnotation(Token.class);
             if(annotation==null){
                 if(((HandlerMethod) handler).getMethodAnnotation(Token.class)!=null){
                     annotation = handlerMethod.getMethodAnnotation(Token.class);

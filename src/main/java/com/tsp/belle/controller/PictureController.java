@@ -6,8 +6,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.tsp.belle.annotation.Token;
+import com.tsp.belle.constants.StringConstants;
 import com.tsp.belle.entity.Picture;
 import com.tsp.belle.service.PictureService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("picture")
+@Token
 public class PictureController extends ApiController {
     /**
      * 服务对象
@@ -83,5 +89,15 @@ public class PictureController extends ApiController {
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.pictureService.removeByIds(idList));
+    }
+
+
+    @GetMapping("get")
+    public R page(Page<Picture> page, Picture picture){
+        PageHelper.startPage((int)page.getCurrent(), StringConstants.NORMAL_PAGE_SIZE);
+        QueryWrapper<Picture> wrapper = new QueryWrapper<>(picture);
+        List<Picture> list = pictureService.list(wrapper);
+        PageInfo<Picture> info = new PageInfo<>(list);
+        return success(info);
     }
 }
