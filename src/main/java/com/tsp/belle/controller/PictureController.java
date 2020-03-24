@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("picture")
-@Token
+//@Token
 public class PictureController extends ApiController {
     /**
      * 服务对象
@@ -44,7 +44,11 @@ public class PictureController extends ApiController {
      */
     @GetMapping
     public R selectAll(Page<Picture> page, Picture picture) {
-        return success(this.pictureService.page(page, new QueryWrapper<>(picture)));
+        PageHelper.startPage((int)page.getCurrent(),9);
+        QueryWrapper<Picture> pictureQueryWrapper = new QueryWrapper<>(picture);
+        pictureQueryWrapper.like("pic_url","images/picture");
+        PageInfo<Picture> picturePage = new PageInfo<>(pictureService.list(pictureQueryWrapper));
+        return success(picturePage);
     }
 
     /**
@@ -89,15 +93,5 @@ public class PictureController extends ApiController {
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.pictureService.removeByIds(idList));
-    }
-
-
-    @GetMapping("get")
-    public R page(Page<Picture> page, Picture picture){
-        PageHelper.startPage((int)page.getCurrent(), StringConstants.NORMAL_PAGE_SIZE);
-        QueryWrapper<Picture> wrapper = new QueryWrapper<>(picture);
-        List<Picture> list = pictureService.list(wrapper);
-        PageInfo<Picture> info = new PageInfo<>(list);
-        return success(info);
     }
 }
