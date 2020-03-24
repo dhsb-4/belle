@@ -11,16 +11,20 @@ import com.tsp.belle.service.RedisService;
 import com.tsp.belle.service.UserService;
 import com.tsp.belle.util.CookieUtils;
 import com.tsp.belle.util.DtoUtils;
+import com.tsp.belle.util.RandomValidateCode;
 import com.tsp.belle.util.UserAgentUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * (User)表控制层
@@ -131,5 +135,25 @@ public class UserController extends ApiController {
         }
 
     }
+    @RequestMapping(value="/imageVailCode.do")
+    public void checkCode(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //设置相应类型,告诉浏览器输出的内容为图片
+        response.setContentType("image/jpeg");
+
+        //设置响应头信息，告诉浏览器不要缓存此内容
+        response.setHeader("pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expire", 0);
+
+        RandomValidateCode randomValidateCode = new RandomValidateCode();
+        try {
+            randomValidateCode.getRandcode(request, response);//输出图片方法
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

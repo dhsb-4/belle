@@ -25,13 +25,21 @@ public class PageController {
         return "login";
     }
 
+//    /**
+//     * 跳转到注册页面
+//     * @return
+//     */
+//    @RequestMapping(value = "signin")
+//    public String register(){
+//        return "signin";
+//    }
     /**
      * 跳转到注册页面
      * @return
      */
-    @RequestMapping(value = "signin")
+    @RequestMapping(value = "register.html")
     public String register(){
-        return "signin";
+        return "register";
     }
 
     @Autowired
