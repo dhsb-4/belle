@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tsp.belle.annotation.Token;
 import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.entity.Dict;
 import com.tsp.belle.exception.BelleException;
@@ -38,6 +39,7 @@ public class DictController extends ApiController {
      * @param dict 查询实体
      * @return 所有数据
      */
+    @Token
     @GetMapping
     public R selectAll(Page<Dict> page, Dict dict) {
         return success(this.dictService.page(page, new QueryWrapper<>(dict)));

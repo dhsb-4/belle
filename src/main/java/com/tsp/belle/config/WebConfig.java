@@ -1,11 +1,14 @@
 package com.tsp.belle.config;
 
-import com.tsp.belle.constants.ConstPath;
+
 import com.tsp.belle.interceptor.TokenInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author likeWind
@@ -22,10 +25,18 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**").excludePathPatterns("/common/**","/js/**"
-                ,"/scss/**","/images/**",
-                "/sp/**","/fonts/**"
-                ,"/font-awesome/**","/main_banner/**"
-                ,"/css/**");
+        List<String> list = new ArrayList<>();
+        list.add("/carousel/**");
+        list.add("/dict/**");
+        list.add("/loginInfo/**");
+        list.add("/music/**");
+        list.add("/picture/**");
+        list.add("/resource/**");
+        list.add("/role/**");
+        list.add("/user/**");
+        list.add("/video/**");
+
+        registry.addInterceptor(tokenInterceptor())
+                .addPathPatterns(list);
     }
 }
