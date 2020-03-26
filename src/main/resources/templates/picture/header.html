@@ -13,21 +13,8 @@
                 <ul>
                     <li><a href='index.html' th:href="@{/index}"><span>主页</span></a></li>
                     <li><a href='single.html' th:href="@{/picture/single}"><span>关于我们</span></a></li>
-                    <li class=' has-sub'><a href='archive.html' th:href="@{/picture/archive}"><span>类别</span></a>
-                        <ul>
-                            <li class='has-sub'><a href='#'><span>Item 1</span></a>
-                                <ul>
-                                    <li><a href='#'><span>Sub Item</span></a></li>
-                                    <li class='last'><a href='#'><span>Sub Item</span></a></li>
-                                </ul>
-                            </li>
-                            <li class='has-sub'><a href='#'><span>Item 2</span></a>
-                                <ul>
-                                    <li><a href='#'><span>Sub Item</span></a></li>
-                                    <li class='last'><a href='#'><span>Sub Item</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <li class=' has-sub' id="dict"><a href='archive.html' th:href="@{/picture/archive}"><span>类别</span></a>
+
                     </li>
                     <li><a href='contact.html' th:href="@{/picture/contact}"><span>联系我们</span></a></li>
                 </ul>
