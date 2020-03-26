@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * ClassName PictureController
  * Description TODO picture模块的Controller
@@ -30,7 +32,7 @@ public class PicturePageController {
                         Model model){
         PageHelper.startPage(1,9);
         QueryWrapper<Picture> pictureQueryWrapper = new QueryWrapper<>(picture);
-        pictureQueryWrapper.like("pic_url","images/picture");
+        pictureQueryWrapper.lambda().like(Picture::getPicUrl,"images/picture");
         PageInfo<Picture> picturePage = new PageInfo<>(pictureService.list(pictureQueryWrapper));
         model.addAttribute("picturePage",picturePage);
         return "picture/index";
