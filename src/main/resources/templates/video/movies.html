@@ -60,15 +60,14 @@
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a class="active" href="movies.html">Movies</a></li>
-                                <li><a href="celebrities.html">CelebritiesList</a></li>
-                                <li><a href="top-movies.html">Top Movies</a></li>
-                                <li><a href="blog.html">News</a></li>
+								<li><a class="active" th:href="@{/video/index}">Home</a></li>
+								<li><a th:href="@{/video/movies}">Movies</a></li>
+								<li><a th:href="@{/video/topmovies}">Top Movies</a></li>
+								<li><a th:href="@{/video/blog}">News</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
 									<ul>
-										<li><a href="blog-details.html">Blog Details</a></li>
-										<li><a href="movie-details.html">Movie Details</a></li>
+										<li><a th:href="@{/video/blogdetails}">Blog Details</a></li>
+										<li><a class="active" th:href="@{/video/moviedetails}">Movie Details</a></li>
 									</ul>
 								</li>
                                 <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
@@ -371,11 +370,11 @@
 				</div>
 				<hr />
 				<div class="row portfolio-item">
-					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
+					<div class="col-lg-3 col-md-4 col-sm-6 soon released" th:each="page:${pageInfo.getList()}">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio1.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+								<img th:src="@{/images/video/portfolio/portfolio1.png}" alt="portfolio" />
+								<a th:href="${page.vidUrl}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>
 							</div>
@@ -394,301 +393,47 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 top">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio2.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>Tale of Revemge</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
+						共<span th:text="${pageInfo.getTotal()}">1</span>条记录
+						<span th:text="${pageInfo.getPageNum()}">1</span>
+						/<span th:text="${pageInfo.getPages()}">1</span>页
 					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 soon">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio3.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>The Lost City of Z</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 top released">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio4.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>Beast Beauty</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 released">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio5.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>In The Fade</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 soon top">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio6.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>Last Hero</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 soon">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio3.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>The Lost City of Z</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 top released">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:href="@{/images/video/portfolio/portfolio4.png}" alt="portfolio" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>Beast Beauty</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
+				</div>
+				<!-- TODO 分页还差点-->
+				<div class="col-sm-7">
+					<div class="dataTables_paginate paging_simple_numbers" id="datatable_responsive_paginate">
+						<ul class="pagination">
+							<li class="paginate_button">
+								<a th:href="@{/video/movies(current=1)}"
+								   aria-controls="datatable-responsive" data-dt-idx="0"
+								   tabindex="0">首页</a>
+							</li>
+							<li class="paginate_button">
+								<a href="#"
+								   th:href="@{/video/movies(current=${pageInfo.getPageNum()-1})}"
+								   aria-controls="datatable-responsive" data-dt-idx="1"
+								   tabindex="0">上一页</a>
+							</li>
+							<li class="paginate_button" >
+								<a href="#"
+								   th:href="@{/video/movies(current=${pageInfo.getPageNum()+1})}"
+								   aria-controls="datatable-responsive" data-dt-idx="1"
+								   tabindex="0">下一页</a>
+							</li>
+							<li class="paginate_button">
+								<a href="#"
+								   th:href="@{/video/movies(current=${pageInfo.getPages()})}"
+								   aria-controls="datatable-responsive" data-dt-idx="7"
+								   tabindex="0">最后一页</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
-		<!-- video section start -->
-		<section class="video ptb-90">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-					    <div class="section-title pb-20">
-							<h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
-                    <div class="col-md-12">
-						<div class="video-slider mt-20">
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video2.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video3.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video4.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video5.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video2.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video3.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video4.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-							<div class="video-area">
-								<img th:href="@{/images/video/video/video5.png}" alt="video" />
-								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-						</div>
-                    </div>
-				</div>
-			</div>
-		</section><!-- video section end -->
-		<!-- footer section start -->
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<img th:href="@{/images/video/logo.png}" alt="about" />
-							<p>7th Harley Place, London W1G 8LZ United Kingdom</p>
-							<h6><span>Call us: </span>(+880) 111 222 3456</h6>
-						</div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Legal</h4>
-							<ul>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Security</a></li>
-							</ul>
-						</div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Account</h4>
-							<ul>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Watchlist</a></li>
-								<li><a href="#">Collections</a></li>
-								<li><a href="#">User Guide</a></li>
-							</ul>
-						</div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Newsletter</h4>
-							<p>Subscribe to our newsletter system now to get latest news from us.</p>
-							<form action="#">
-								<input type="text" placeholder="Enter your email.."/>
-								<button>SUBSCRIBE NOW</button>
-							</form>
-						</div>
-                    </div>
-				</div>
-				<hr />
-			</div>
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 text-center text-lg-left">
-							<div class="copyright-content">
-								<p>&copy; 2018 MoviePoint. All Rights <a href="http://www.17sucai.com/">Reserved</a>. Designed by themerocket</p>
-							</div>
-						</div>
-						<div class="col-lg-6 text-center text-lg-right">
-							<div class="copyright-content">
-								<a href="#" class="scrollToTop">
-									Back to top<i class="icofont icofont-arrow-up"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer><!-- footer section end -->
+
 		<!-- jquery main JS -->
 		<script th:src="@{/js/jquery.min.js}" ></script>
 		<!-- Bootstrap JS -->
