@@ -38,24 +38,6 @@
 		<header class="header">
 			<div class="container">
 				<div class="header-area">
-					<div class="logo">
-						<a href="index.html"><img th:href="@{/images/video/logo.png}" alt="logo" /></a>
-					</div>
-					<div class="header-right">
-						<form action="#">
-							<select>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-							</select>
-							<input type="text"/>
-							<button><i class="icofont icofont-search"></i></button>
-						</form>
-						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
-						</ul>
-					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
@@ -342,7 +324,6 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb-area-content">
-							<h1>Movies Page</h1>
 						</div>
 					</div>
 				</div>
@@ -360,10 +341,8 @@
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" class="active">Latest</li>
-								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".top">Top Rated</li>
-								<li data-filter=".released">Recently Released</li>
+								<li data-filter="*" th:onclick="|doVideo('美女')|" class="active">美女</li>
+								<li data-filter=".soon">动漫</li>
 							</ul>
 						</div>
 					</div>
@@ -377,19 +356,6 @@
 								<a th:href="${page.vidUrl}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>
-							</div>
-							<div class="portfolio-content">
-								<h2>Boyz II Men</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -448,5 +414,14 @@
 		<script th:src="@{/js/isotope.pkgd.min.js}" ></script>
 		<!-- main JS -->
 		<script th:src="@{/js/main.js}"></script>
+		<script>
+			function doVideo(type) {
+				$.ajax({
+					type: "POST",
+					url	: "/video/type",
+					data: "type="+type
+				})
+			}
+		</script>
 	</body>
 </html>
