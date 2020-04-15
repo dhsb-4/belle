@@ -1,14 +1,11 @@
 package com.tsp.belle.entity;
 
-import lombok.Data;
-
-
-
-import java.util.Date;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (Resource)表实体类

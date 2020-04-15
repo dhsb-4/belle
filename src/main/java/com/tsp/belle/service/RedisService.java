@@ -1,10 +1,7 @@
 package com.tsp.belle.service;
 
 import com.tsp.belle.dto.user.UserDto;
-import com.tsp.belle.entity.User;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * 缓存实现接口
