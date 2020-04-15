@@ -40,7 +40,10 @@ public class VideoController extends ApiController {
      */
     @GetMapping
     public R selectAll(Page<Video> page, Video video) {
-        return success(this.videoService.page(page, new QueryWrapper<>(video)));
+        PageHelper.startPage((int)page.getCurrent(),2);
+        Page<Video> videoPage = this.videoService.page(page, new QueryWrapper<>(video));
+        System.out.println(videoPage.optimizeCountSql());
+        return success(videoPage);
     }
 
     /**

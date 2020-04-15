@@ -39,10 +39,12 @@ public class DictController extends ApiController {
      * @param dict 查询实体
      * @return 所有数据
      */
-    @Token
+//    @Token
     @GetMapping
     public R selectAll(Page<Dict> page, Dict dict) {
-        return success(this.dictService.page(page, new QueryWrapper<>(dict)));
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>(dict);
+        queryWrapper.lambda().ne(Dict::getDictParentId,"0");
+        return success(this.dictService.page(page, queryWrapper));
     }
 
     /**
