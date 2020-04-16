@@ -91,6 +91,7 @@ dialogOpen = function(opt){
 
 
 const cnv = document.getElementById('mineCanvas');
+console.log(cnv)
 let ctx = cnv.getContext('2d');
 
 // 基础配置

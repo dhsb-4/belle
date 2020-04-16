@@ -21,4 +21,10 @@ public class BaseController {
     }
 
 
+    @GetMapping("{model}/{url}")
+    public String toModelUrl(@PathVariable String model,@PathVariable String url){
+        return model + "/" + url;
+    }
+
+
 }
