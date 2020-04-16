@@ -341,15 +341,16 @@
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" th:onclick="|doVideo('美女')|" class="active">美女</li>
-								<li data-filter=".soon">动漫</li>
+								<li data-filter="*" class="active" th:onclick="|doAll('全部')|">全部</li>
+								<li data-filter=".soon" th:href="@{/video/movies(type='动漫')}">动漫</li>
+								<li data-filter=".soon" th:href="@{/video/movies(type='美女')}">美女</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<hr />
-				<div class="row portfolio-item">
-					<div class="col-lg-3 col-md-4 col-sm-6 soon released" th:each="page:${pageInfo.getList()}">
+				<div class="row portfolio-item" id="all">
+					<!--<div class="col-lg-3 col-md-4 col-sm-6 soon released" th:each="page:${pageInfo.getList()}">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
 								<img th:src="@{/images/video/portfolio/portfolio1.png}" alt="portfolio" />
@@ -358,17 +359,16 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
-				<div class="col-sm-5">
+				<!--<div class="col-sm-5">
 					<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
 						共<span th:text="${pageInfo.getTotal()}">1</span>条记录
 						<span th:text="${pageInfo.getPageNum()}">1</span>
 						/<span th:text="${pageInfo.getPages()}">1</span>页
 					</div>
-				</div>
-				<!-- TODO 分页还差点-->
-				<div class="col-sm-7">
+				</div>-->
+				<!--<div class="col-sm-7">
 					<div class="dataTables_paginate paging_simple_numbers" id="datatable_responsive_paginate">
 						<ul class="pagination">
 							<li class="paginate_button">
@@ -396,7 +396,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</section><!-- portfolio section end -->
 
@@ -415,11 +415,36 @@
 		<!-- main JS -->
 		<script th:src="@{/js/main.js}"></script>
 		<script>
-			function doVideo(type) {
+
+			All();
+
+			function All(){
 				$.ajax({
 					type: "POST",
-					url	: "/video/type",
-					data: "type="+type
+					url	: "/video/moviesall",
+					data: "",
+					dataType:"json",
+					success:function(data){
+						//前面标签
+						// TODO 还没做完
+						var and = "";
+						var front="<div class='col-lg-3 col-md-4 col-sm-6 soon released'>" +
+								  "<div class='single-portfolio'>" +
+								  "<div class='single-portfolio-img'>";
+
+							var video = "<img src='/images/video/portfolio/portfolio1.png' alt='portfolio'/>" +
+									"<a class='popup-youtube' href="+data[0].vidUrl+">" +
+									"<i class='icofont icofont-ui-play'></i>" +
+									"</a>"
+
+
+						//后面标签
+						var rear="</div></div></div>";
+
+						and+=front+=video+=rear;
+
+						$("#all").html(and);
+					}
 				})
 			}
 		</script>

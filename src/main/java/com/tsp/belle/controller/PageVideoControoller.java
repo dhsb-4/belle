@@ -1,5 +1,6 @@
 package com.tsp.belle.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
@@ -58,34 +59,25 @@ public class PageVideoControoller {
     }
 
 
-    @GetMapping("video/movies")
-    public String movies(Page<Video> page, Video video, Model model,String type){
+    @RequestMapping("video/moviesall")
+    @ResponseBody
+    public String moviesall(Page<Video> page, Video video){
         //分页查询      --视频
         PageHelper.startPage((int)page.getCurrent(),2);
         QueryWrapper<Video> wrapper = new QueryWrapper<Video>(video);
 
-        //类型判断
-        if (!type.equals("")){
-            if (type.equals("动漫")){
-                wrapper.eq("vidType",type);
-            }else{
-                wrapper.eq("vidType",type);
-            }
-        }
+
 
         PageInfo<Video> pageInfo = new PageInfo<>(videoService.list(wrapper));
 
-        model.addAttribute("pageInfo",pageInfo);
-        return "video/movies";
+        List<Video> videoList = pageInfo.getList();
+
+        return JSONArray.toJSONString(videoList);
     }
 
-
-    @RequestMapping("/video/type")
-    @ResponseBody
-    public String type(String type){
-
-
-        return null;
+    @RequestMapping("video/movies")
+    public String movies(){
+        return "video/movies";
     }
 
 
