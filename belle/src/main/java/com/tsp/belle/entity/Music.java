@@ -44,6 +44,8 @@ public class Music extends Model<Music> {
     private String musImgUrl;
     //歌手
     private String musSongName;
+    //歌单来源
+    private String musForm;
     /**
      * 获取主键值
      *

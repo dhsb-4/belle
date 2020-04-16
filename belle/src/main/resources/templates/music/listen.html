@@ -101,8 +101,8 @@
                       <ul th:each="music:${path}" class=" list-group list-group-lg radius no-border no-bg m-t-n-xxs m-b-none auto" id="latest">
                         <li class="list-group-item">
                           <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <span class="icon-control-play text" th:onclick="music([[${music.musUrl}]]);"></span>
-                          <span class="icon-control-pause text-active"></span>
+                          <span class="icon-control-play text" th:onclick="music([[${music.musUrl}]],[[${music.musType}]],[[${music.musForm}]]);"></span>
+                          <span class="icon-control-pause text-active" th:onclick="mus()"></span>
                         </a>
                           <div id="hoveraudio" class=" clear text-ellipsis">
                             <span th:text="${music.musSingerName}">The wheel of fortune</span>
@@ -121,7 +121,7 @@
 
                         <li class="list-group-item clearfix">
                           <a href="#" class="jp-play-fun pull-right m-t-sm m-l text-md">
-                          <i class="icon-control-play text"  th:onclick="music([[${img.musUrl}]]);"></i>
+                          <i class="icon-control-play text"  th:onclick="music([[${img.musUrl}]],[[${img.musType}]],[[${img.musForm}]]);"></i>
                           <i class="icon-control-pause text-active"></i>
                         </a>
                           <a href="#" class="pull-left thumb-sm m-r">
@@ -205,15 +205,15 @@
   <script th:src="@{/js/jPlayer/add-on/jplayer.playlist.min.js}" type="text/javascript" src="../../static/js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script th:src="@{/js/jPlayer/demo.js}" type="text/javascript" src="../../static/js/jPlayer/demo.js"></script>
   <script type="text/javascript">
-          function music(url) {
+          function music(url,type,musfrom) {
               $.ajax({
                   type : "POST",  //提交方式
                   url : "http://localhost:8080/music/listen#",
                   success : function(result) {//返回数据根据结果进行相应的处理
                       $(".music").html("<meting-js\n" +
                           "                            class=\"music\"\n" +
-                          "                            server=\"netease\"\n" +
-                          "                            type=\"song\"\n" +
+                          "                            server="+musfrom+"\n" +
+                          "                            type="+type+"\n" +
                           "                            id="+url+"\n" +
                           "                            autoplay=\"true\"\n" +
                           "                            loop=\"one\"\n" +
@@ -221,7 +221,6 @@
                           "                    </meting-js>");
                   }
               });
-              /*window.location.href="http://localhost:8080/music/listen";*/
           }
   </script>
 </body>

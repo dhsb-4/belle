@@ -15,9 +15,10 @@
         <result property="musDuration" column="mus_duration" jdbcType="VARCHAR"/>
         <result property="musImgUrl" column="mus_img_url" jdbcType="VARCHAR"/>
         <result property="musSongName" column="mus_song_name" jdbcType="VARCHAR"/>
+        <result property="musForm" column="mus_form" jdbcType="VARCHAR"/>
     </resultMap>
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="MusicMap">
-        SELECT id,mus_singer_name,mus_url,mus_upload_date,mus_download_count,mus_upload_name,mus_browse_count,mus_resource_remark,mus_type,mus_duration,mus_picture_id,mus_img_url,mus_song_name FROM music
+        SELECT id,mus_singer_name,mus_url,mus_upload_date,mus_download_count,mus_upload_name,mus_browse_count,mus_resource_remark,mus_type,mus_duration,mus_picture_id,mus_img_url,mus_song_name,mus_form FROM music
     </select>
 </mapper>
