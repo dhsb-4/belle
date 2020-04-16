@@ -9,21 +9,24 @@ import com.tsp.belle.dto.user.UserDto;
 import com.tsp.belle.entity.User;
 import com.tsp.belle.service.RedisService;
 import com.tsp.belle.service.UserService;
-import com.tsp.belle.util.CookieUtils;
-import com.tsp.belle.util.DtoUtils;
-import com.tsp.belle.util.RandomValidateCode;
-import com.tsp.belle.util.UserAgentUtils;
+import com.tsp.belle.util.*;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.social.connect.web.HttpSessionSessionStrategy;
+import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -135,24 +138,78 @@ public class UserController extends ApiController {
         }
 
     }
-    @RequestMapping(value="/imageVailCode.do")
-    public void checkCode(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //设置相应类型,告诉浏览器输出的内容为图片
-        response.setContentType("image/jpeg");
 
-        //设置响应头信息，告诉浏览器不要缓存此内容
-        response.setHeader("pragma", "no-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expire", 0);
+    /**
+     * Session Key
+     * */
+    public final static String SESSION_KEY_IMAGE_CODE = "SESSION_KEY_IMAGE_CODE";
 
-        RandomValidateCode randomValidateCode = new RandomValidateCode();
-        try {
-            randomValidateCode.getRandcode(request, response);//输出图片方法
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+
+    /**
+     * 生成图片验证码接口
+     */
+    @GetMapping("/imageVerify")
+    public void imageVerify(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        final ImageVerify.ImageCode imageCode = new ImageVerify(
+                68,/** 验证码图片宽度*/
+                36,/** 验证码图片长度*/
+                4,/** 验证码位数*/
+                32,/** 验证码字体大小*/
+                60,/** 验证码有效时间(秒)*/
+                2,/** x轴距*/
+                28/** y轴距*/
+        ).create();
+
+        sessionStrategy.setAttribute(
+                new ServletWebRequest(request),
+                SESSION_KEY_IMAGE_CODE,
+                imageCode
+        );
+
+        ImageIO.write(imageCode.getImage(), "jpeg", response.getOutputStream());
+        response.getOutputStream().flush();
     }
+
+    /**
+     * 验证接口
+     */
+    @PostMapping("/verify")
+    @ResponseBody
+    public Map<String, String> verify(@RequestBody TestVo testVo, ServletWebRequest servletWebRequest) {
+        final ImageVerify.ImageCode imageCode = (ImageVerify.ImageCode) sessionStrategy.getAttribute(servletWebRequest, SESSION_KEY_IMAGE_CODE);
+        Map<String, String> m = new HashMap<>();
+        if (testVo.getCode()=="") {
+            m.put("message", "验证码不能为空!");
+            return m;
+        }
+
+        if (imageCode == null) {
+            m.put("message", "验证码不存在!");
+            return m;
+        }
+
+        if (imageCode.isExpire()) {
+            sessionStrategy.removeAttribute(servletWebRequest, SESSION_KEY_IMAGE_CODE);
+            m.put("message", "验证码已过期!");
+            return m;
+        }
+
+        if (!imageCode.getCode().equals(testVo.getCode())) {
+            m.put("message", "验证码不正确!");
+            return m;
+        }
+
+        sessionStrategy.removeAttribute(servletWebRequest, SESSION_KEY_IMAGE_CODE);
+
+        m.put("message", "成功");
+        return m;
+    }
+
+
+
+
+
 
 
 

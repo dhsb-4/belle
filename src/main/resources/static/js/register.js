@@ -20,26 +20,6 @@
 	//refCode();
 	refCode();
 	var vailCode; //在全局 定义验证码
-	function refCode() {
-		vailCode = new Array();
-		var codeLength = 4;//验证码的长度
-		var checkCode = document.getElementById("refCode_reg_img");
-
-
-		checkCode.value = "";
-
-		var selectChar = new Array(2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
-
-		for (var i = 0; i < codeLength; i++) {
-			var charIndex = Math.floor(Math.random() * 32);
-			vailCode += selectChar[charIndex];
-		}
-		if (vailCode.length != codeLength) {
-			createCode();
-		}
-		checkCode.value = vailCode;
-
-	}
 	// 点击刷新验证码
 	$("#refCode_reg_img").on("click", function() {
 		refCode();
@@ -47,13 +27,23 @@
 
 	// 获取图片验证码
 	function refCode() {
-		$.ajax({
+		/*$.ajax({
 			url: "user/imageVailCode.do",
 			type: "post",
 			success: function(result) {
 				vailCode = result.data.rand;
 				$("#refCode_reg_img").prop("src", "data:image/jpg;base64," + result.data.image);
 				$("#code").val("");
+			}
+		});*/
+		$.ajax({
+			async: false,
+			type: "get",
+			url: "user/imageVerify",
+			success: function () {
+				$("#refCode_reg_img").prop("src", 'user/imageVerify?' + Math.random());
+			},error:function () {
+				alert("错误!")
 			}
 		});
 	}
@@ -169,6 +159,7 @@
 			}
 		},
 		code: function(value) {
+			alert(value)
 			if(value.toUpperCase() != vailCode) {
 				refCode();
 				return "图品验证码错误";
