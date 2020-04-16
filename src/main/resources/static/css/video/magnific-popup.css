@@ -147,7 +147,8 @@ button::-moz-focus-inner {
   color: #333; }
 
 .mfp-image-holder .mfp-close,
-.mfp-iframe-holder .mfp-close {
+.mfp-iframe-holder .mfp-close  {
+  !important;
   color: #FFF;
   right: -6px;
   text-align: right;

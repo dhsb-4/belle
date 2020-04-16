@@ -7,10 +7,13 @@
     <title>登录</title>
     <link th:href="@{../css/login.css}" href="../static/css/login.css" rel="stylesheet">
     <script th:src="@{../js/jquery.min.js}" src="../static/js/jquery.min.js"></script>
-    <script src="../static/common/js/common.js" th:src="@{../common/js/common.js}"></script>
+    <link th:src="@{/common/css/common.css}" href="../static/common/css/common.css">
+
 </head>
 <body>
+<canvas id="mineCanvas"></canvas>
 <div class="dowebok">
+
     <div class="logo"></div>
     <div class="form-item">
         <input id="usrAccount" type="text" autocomplete="off" placeholder="帐号" th:onfocus="checkUsrName()" onfocus="checkUsrName()">
@@ -29,6 +32,7 @@
         <a class="forget" href="javascript:">忘记密码</a>
     </div>
 </div>
+<script src="../static/common/js/common.js" th:src="@{../common/js/common.js}"></script>
 <script layout:fragment="js">
     /**
      * 账号为空时，点击账号框消失提示
@@ -77,6 +81,7 @@
                 return true;
             }
         }
+
 </script>
 </body>
 </html>

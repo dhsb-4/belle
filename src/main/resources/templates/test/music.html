@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐测试</title>
+    <script th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js"></script>
+    <link th:src="@{/common/css/common.css}" href="../static/common/css/common.css">
+</head>
+<body>
+<canvas id="mineCanvas"></canvas>
+
+<script src="../static/common/js/common.js" th:src="@{/common/js/common.js}"></script>
+<link rel="stylesheet" th:href="@{/js/APlayer/APlayer.min.css}">
+<script th:src="@{/js/APlayer/APlayer.min.js}"></script>
+<!-- require MetingJS -->
+<script th:src="@{/js/APlayer/Meting.min.js}"></script>
+<script>
+    let element = document.createElement("meting-js");
+    $.getJSON("/music/6",function (res) {
+        element.setAttribute("server",res.data.musForm);
+        element.setAttribute("fixed",true);
+        element.setAttribute("type","playlist");
+        element.setAttribute("id",res.data.musUrl);
+        $("body").append(element);
+    });
+
+</script>
+</body>
+</html>
