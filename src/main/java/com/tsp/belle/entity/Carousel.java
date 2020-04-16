@@ -1,11 +1,8 @@
 package com.tsp.belle.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
-
-
-
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
