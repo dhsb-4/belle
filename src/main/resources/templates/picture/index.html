@@ -18,6 +18,7 @@
     
     <!-- CSS
   ================================================== -->
+	<link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="../../static/css/picture/lightbox.css" th:href="@{/css/picture/lightbox.css}">
 	<link rel="stylesheet" href="../../static/css/picture/zerogrid.css" th:href="@{/css/picture/zerogrid.css}">
 	<link rel="stylesheet" href="../../static/css/picture/style.css" th:href="@{/css/picture/style.css}">
@@ -56,12 +57,16 @@
 					<div class="row" id="imgdiv">
 						<div class="col-1-3" th:each="picture:${picturePage.list}">
 							<div class="wrap-col">
-								<a class="example-image-link" onclick="browseCountUp(picture)" th:href="@{(${picture.picUrl})}" data-lightbox="example-set" data-title="单击图片侧边前进后退">
+								<a class="example-image-link" th:href="@{(${picture.picUrl})}" data-lightbox="example-set" data-title="单击图片侧边前进后退">
 									<div class="zoom-container" style="height: 300px">
 										<div class="zoom-caption">
 											<div class="caption-inner">
 												<div class="caption-inner1">
 													<i class="fa fa-eye"></i>
+												</div>
+												<div style="text-align: center" >
+													<span class="glyphicon glyphicon-eye-open"></span>
+													<span th:text="${picture.picBrowseCount}"></span>
 												</div>
 											</div>
 										</div>
@@ -120,11 +125,13 @@
 <script src="../../static/js/lightbox-plus-jquery.min.js" th:src="@{/js/lightbox-plus-jquery.min.js}"></script>
 
 <script type="text/javascript">
+	//这个是不变的标签
 	var tou = '<div class="col-1-3"><div class="wrap-col">';
 
-	var zhong =		'<div class="zoom-container" style="height: 300px"><div class="zoom-caption"><div class="caption-inner"><div class="caption-inner1"><i class="fa fa-eye"></i></div></div></div>';
+	var zhong =	'<div class="zoom-container" style="height: 300px"><div class="zoom-caption"><div class="caption-inner"><div class="caption-inner1"><i class="fa fa-eye"></i></div><div style="text-align: center" ><span class="glyphicon glyphicon-eye-open"></span><span id="picBrowseCount"></span></div></div></div>';
 
 	var wei = '</div></a></div></div>';
+	//动态添加图片的方法
 	function onc(current){
 		$.get("/picture",{current:current},function(data){
 			var picturePage = data.data;
@@ -134,23 +141,33 @@
                 $("#a-clink").attr('href','javascript:onc('+(picturePage.nextPage)+')');
             }
             for (var i=0;i<=picturePage.list.length;i++){
-                var imgdiv = tou+'<a class="example-image-link" href="'+picturePage.list[i].picUrl+'" data-lightbox="example-set" data-title="单击图片侧边前进后退">'+
-						zhong+'<img class="example-image" src="'+picturePage.list[i].picUrl+'" height="100%" alt="图片丢失了"/>'+wei;
-                $("#imgdiv").append($(imgdiv));
+                var imgdiv = $(tou+'<a class="example-image-link" href="'+picturePage.list[i].picUrl+'" data-lightbox="example-set" data-title="单击图片侧边前进后退">'+
+						zhong+'<img class="example-image" src="'+picturePage.list[i].picUrl+'" height="100%" alt="图片丢失了"/>'+wei);
+                imgdiv.find("#picBrowseCount").html(picturePage.list[i].picBrowseCount).removeAttr("id")
+                $("#imgdiv").append(imgdiv);
             }
 		});
 	}
+	//这个是用来添加浏览次数的
+	$(".col-1-3").click(function(){
+		$("#lightbox").find("img").on("load",function(){
+			$.get("/picture/picUrl",{picUrl:$(this).attr("src")});
+			if($("#lightboxOverlay").css("display")==none){
+				$("#lightbox").find("img").off("load");
+			}
+		});
+	})
 
-	function browseCountUp(picture){
-        alert(picture.picUrl)
-    }
+
 
     $(function() {
+    	//如果一开始图片就不够分页即改成“已经加载完了”
         if([[${picturePage.isLastPage}]]){
             $("#a-clink").removeAttr('href').text("已经加载完了哦~");
         }else{
             $("#a-clink").attr('href','javascript:onc('+[[${picturePage.nextPage}]]+')');
         }
+        //-------分割线-------
 		if ($.browser.msie && $.browser.version.substr(0,1)<7)
 		{
 		$('li').has('ul').mouseover(function(){
