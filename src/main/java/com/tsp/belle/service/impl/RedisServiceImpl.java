@@ -1,12 +1,8 @@
 package com.tsp.belle.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.tsp.belle.dto.user.UserDto;
-import com.tsp.belle.entity.User;
 import com.tsp.belle.service.RedisService;
 import com.tsp.belle.util.RedisUtil;
-import com.tsp.belle.util.UserAgentUtils;
-import eu.bitwalker.useragentutils.UserAgent;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 /**
