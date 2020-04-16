@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>角色添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>新增角色信息 <i class="fa fa-user"></i></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="clearfix"></div>
+
+                    <ul id="add">
+
+                    </ul>
+
+
+                    <form class="form-horizontal form-label-left" th:action="@{/edit/save}" action="/edit/save" method="post">
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input class="btn btn-primary" value="保存" type="button" th:onclick="ajak()">
+                                <input type="button" th:onclick="checkAll()" class="btn btn-primary" value="全选"/>
+                                <input type="button" th:onclick="SelectNone()" class="btn btn-primary" value="全不选"/>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script layout:fragment="js">
+    var rfid;
+    function checkAll() {
+        $("li input").attr("checked","checked");
+        ajax();
+    }
+    function SelectNone() {
+        $("li input").removeAttr("checked");
+    }
+    function L01(){
+        $(".L01").siblings().children().children().attr("checked","checked");
+    }
+    function L02(){
+        $(".L02").siblings().children().children().attr("checked","checked");
+    }
+    function L03(){
+        $(".L03").siblings().children().children().attr("checked","checked");
+    }
+    function L04(){
+        $(".L04").siblings().children().children().attr("checked","checked");
+    }
+    function L05(){
+        $(".L05").siblings().children().children().attr("checked","checked");
+    }
+    function L06(){
+        $(".L06").siblings().children().children().attr("checked","checked");
+    }
+    function ajak() {
+        var packageCodeList=new Array();
+        $('input[name="rightCode"]:checked').each(function(){
+            packageCodeList.push($(this).val());//向数组中添加元素
+        });
+        var rid=new Array();
+        $('input[name="id"]:checked').each(function(){
+            rid.push($(this).val());//向数组中添加元素
+        });
+        $.ajax({
+            type:"GET",
+            url:"/crm/role/add/save?packageCodeList="+packageCodeList+"&id="+rid+"",
+            dataType:"json",
+            success:function (data) {
+                if(data['ok']="ok"){
+                    window.location.href="http://localhost:8081/crm/role/list";
+                }
+            }
+        });
+    }
+    $(document).ready(function(){
+        var select;
+        $.ajax({
+            type:"GET",
+            url:"/crm/role/edit/json",
+            dataType:"json",
+            success:function(data){
+                for(var i=0;i<data["all"].length;i++){
+                    if(data["all"][i]['rightParentCode']=="ROOT_MENU"){
+                        if (select==null){
+                            select="<li>"+
+                                "<input type=\"checkbox\" onclick='"+data['all'][i]['rightCode']+"()' class='"+data['all'][i]['rightCode']+"' name='rightCode' value='"+data['all'][i]['rightCode']+"'>"+data['all'][i]['rightText'];
+                        }else {
+                            select += "<li>" +
+                                "<input type=\"checkbox\" onclick='" + data['all'][i]['rightCode'] + "()' class='" + data['all'][i]['rightCode'] + "' name='rightCode' value='" + data['all'][i]['rightCode'] + "'>" + data['all'][i]['rightText'];
+                        }
+                    }
+                    if(data["all"][i]['rightParentCode']!="ROOT_MENU"){
+                        if(data["all"][i]['rightCode'].substring(4,5)=="1"){
+                            select+="<ul>" +
+                                        "<li>" +
+                                            "<input type=\"checkbox\" onclick='ajax()'  value='"+data['all'][i]['rightCode']+"' name='rightCode'>"+data['all'][i]['rightText'] +
+                                        "</li>";
+                        }else {
+                            select+="<li>" +
+                                        "<input type=\"checkbox\" onclick='ajax()' value='"+data['all'][i]['rightCode']+"' name='rightCode'>"+data['all'][i]['rightText']+
+                                    "</li>";
+                        }
+                        //alert(data["all"][i+1]['rightParentCode'])
+                        if((i+1)<data["all"].length){
+                        if(data["all"][i+1]['rightParentCode']=="ROOT_MENU"){
+                            select+="</ul>";
+                        }
+                    }
+                    }
+                }
+                select+="</li>";
+                $("#add").html(select);
+                for(var j=0;j<data["list"].length;j++){
+                    if(data["list"][j]["rfRightCode"]== $("[value='"+data["list"][j]["rfRightCode"]+"']").val()){
+                        $("[value='"+data["list"][j]["rfRightCode"]+"']").attr("checked","checked");
+                        $('input[name="rightCode"]:checked').attr("id",data["list"][j]["rfId"]);
+                    }
+                }
+            },
+            error:function(data){
+                alert("对不起，删除失败");
+            }
+        });
+        $("#back").on("click",function(){
+            window.history.back();
+        });
+    });
+</script>
+</html>

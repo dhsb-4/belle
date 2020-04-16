@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="height: 200px">
+    赋值：<span th:text="${userName}">userName</span><br>
+    拼接：<span th:text="'Hello '+${userName}+'! '">Hello userName</span><br>
+    拼接：<span th:text="|Hello ${userName} !|">Hello userName!</span>
+</div>
+
+
+<div style="height: 200px">
+    <h1>基本对象</h1>
+<!--    操作request对象-->
+    <p th:text="${#request.getAttribute('test')}"></p>
+<!--    操作request作用域，不能使用request.test操作-->
+    <p th:text="${test}"></p>
+<!--操作session作用域-->
+    <p th:text="${session.test}"></p>
+
+    <h1>Utility对象</h1>
+<!--    格式化时间-->
+    <p th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}">2019-11-27 15:56:30</p>
+<!--    创建当前时间-->
+    <p th:text="${#dates.createToday()}">2019-11-27</p>
+</div>
+</body>
+</html>

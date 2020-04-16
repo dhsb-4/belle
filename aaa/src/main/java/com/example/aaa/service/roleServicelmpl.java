@@ -16,10 +16,8 @@ private roleservice role;
     public List<SysRole> findAll() {
         return role.findAll();
     }
-
     @Override
     public SysRole findByRoleId(int id) {
         return role.findByRoleId(id);
     }
-
 }
