@@ -1,0 +1,8 @@
+body{background-color: #232323;color: aliceblue}
+#mineCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+}

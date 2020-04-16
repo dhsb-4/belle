@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <div class="zerogrid">
+        <div class="wrap-header">
+            <div class="logo t-center"><h1 style="font-size: 78px"><a href="index.html" th:href="@{/picture/index}">图片专区</a></h1></div>
+            <div id='cssmenu' class="align-center">
+                <ul>
+                    <li><a href='index.html' th:href="@{/index}"><span>主页</span></a></li>
+                    <li><a href='single.html' th:href="@{/picture/single}"><span>关于我们</span></a></li>
+                    <li class=' has-sub' id="dict"><a href='archive.html' th:href="@{/picture/archive}"><span>类别</span></a>
+
+                    </li>
+                    <li><a href='contact.html' th:href="@{/picture/contact}"><span>联系我们</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>

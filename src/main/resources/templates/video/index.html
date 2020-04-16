@@ -1,0 +1,581 @@
+﻿<!DOCTYPE HTML>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Moviepoint - Online Movie,Vedio and TV Show HTML Template</title>
+		<!-- Favicon Icon -->
+		<link rel="icon" th:href="@{/images/video/favcion.png}" href="../../static/images/video/favcion.png" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/bootstrap.min.css}" href="../../static/css/video/bootstrap.min.css" media="all" />
+		<!-- Slick nav CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/slicknav.min.css}" href="../../static/css/video/slicknav.min.css" media="all" />
+		<!-- Iconfont CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/icofont.css}" href="../../static/css/video/icofont.css" media="all" />
+		<!-- Owl carousel CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/owl.carousel.css}" href="../../static/css/video/owl.carousel.css">
+		<!-- Popup CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/magnific-popup.css}" href="../../static/css/video/magnific-popup.css">
+		<!-- Main style CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/style.css}" href="../../static/css/video/style.css" media="all" />
+		<!-- Responsive CSS -->
+		<link rel="stylesheet" th:href="@{/css/video/responsive.css}" href="../../static/css/video/responsive.css" media="all" />
+		<!--[if lt IE 9]>
+		  <script src="http://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+
+		<!-- Page loader -->
+	    <div id="preloader"></div>
+		<!-- header section start -->
+		<header class="header">
+			<div class="container">
+				<div class="header-area">
+					<div class="menu-area">
+						<div class="responsive-menu"></div>
+					    <div class="mainmenu">
+                            <ul id="primary-menu">
+                                <li><a class="active" th:href="@{/video/index}">Home</a></li>
+                                <li><a th:href="@{/video/movies}">Movies</a></li>
+                                <li><a th:href="@{/video/topmovies}">Top Movies</a></li>
+                                <li><a th:href="@{/video/blog}">News</a></li>
+								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
+									<ul>
+										<li><a th:href="@{/video/blogdetails}">Blog Details</a></li>
+										<li><a class="active" th:href="@{/video/moviedetails}">Movie Details</a></li>
+									</ul>
+								</li>
+                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+                            </ul>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="login-area">
+			<div class="login-box">
+				<a href="#"><i class="icofont icofont-close"></i></a>
+				<h2>LOGIN</h2>
+				<form action="#">
+					<h6>USERNAME OR EMAIL ADDRESS</h6>
+					<input type="text" />
+					<h6>PASSWORD</h6>
+					<input type="text" />
+					<div class="login-remember">
+						<input type="checkbox" />
+						<span>Remember Me</span>
+					</div>
+					<div class="login-signup">
+						<span>SIGNUP</span>
+					</div>
+					<a href="#" class="theme-btn">LOG IN</a>
+					<span>Or Via Social</span>
+					<div class="login-social">
+						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
+						<a href="#"><i class="icofont icofont-social-twitter"></i></a>
+						<a href="#"><i class="icofont icofont-social-linkedin"></i></a>
+						<a href="#"><i class="icofont icofont-social-google-plus"></i></a>
+						<a href="#"><i class="icofont icofont-camera"></i></a>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+		<div class="buy-ticket">
+			<div class="container">
+				<div class="buy-ticket-area">
+					<a href="#"><i class="icofont icofont-close"></i></a>
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="buy-ticket-box">
+								<h4>Buy Tickets</h4>
+								<h5>Seat</h5>
+								<h6>Screen</h6>
+								<div class="ticket-box-table">
+									<table class="ticket-table-seat">
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+									</table>
+									<table>
+										<tr>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>4</td>
+										</tr>
+										<tr>
+											<td>5</td>
+										</tr>
+									</table>
+									<table class="ticket-table-seat">
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td class="active">1</td>
+											<td class="active">1</td>
+											<td class="active">1</td>
+											<td class="active">1</td>
+											<td class="active">1</td>
+											<td class="active">1</td>
+											<td class="active">1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+									</table>
+									<table>
+										<tr>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>4</td>
+										</tr>
+										<tr>
+											<td>5</td>
+										</tr>
+									</table>
+									<table class="ticket-table-seat">
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+									</table>
+								</div>
+								<div class="ticket-box-available">
+									<input type="checkbox" />
+									<span>Available</span>
+									<input type="checkbox" checked />
+									<span>Unavailable</span>
+									<input type="checkbox" />
+									<span>Selected</span>
+								</div>
+								<a href="#" class="theme-btn">previous</a>
+								<a href="#" class="theme-btn">Next</a>
+							</div>
+						</div>
+						<div class="col-lg-3 offset-lg-1">
+							<div class="buy-ticket-box mtr-30">
+								<h4>Your Information</h4>
+								<ul>
+									<li>
+										<p>Location</p>
+										<span>HB Cinema Box Corner</span>
+									</li>
+									<li>
+										<p>TIME</p>
+										<span>2018.07.09   20:40</span>
+									</li>
+									<li>
+										<p>Movie name</p>
+										<span>Home Alone</span>
+									</li>
+									<li>
+										<p>Ticket number</p>
+										<span>2 Adults, 2 Children, 2 Seniors</span>
+									</li>
+									<li>
+										<p>Price</p>
+										<span>89$</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- header section end -->
+		<!-- hero area start -->
+		<section class="hero-area" id="home">
+			<div class="container">
+				<div class="hero-area-slider">
+					<div class="row hero-area-slide">
+						<div class="col-lg-6 col-md-5">
+							<div class="hero-area-content">
+								<img th:src="@{/images/video/slide2.png}" src="../../static/images/video/slide2.png" alt="about" />
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-7">
+							<div class="hero-area-content pr-50">
+								<h2>The Devil Princess</h2>
+								<div class="review">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									<h4>180k voters</h4>
+								</div>
+								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<h3>Cast:</h3>
+								<div class="slide-cast">
+									<div class="single-slide-cast">
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
+									</div>
+								</div>
+								<div class="slide-trailor">
+									<h3>Watch Trailer</h3>
+									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row hero-area-slide">
+						<div class="col-lg-6 col-md-5">
+							<div class="hero-area-content">
+								<img th:src="@{/images/video/slide1.png}" src="../../static/images/video/slide1.png" alt="about" />
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-7">
+							<div class="hero-area-content pr-50">
+								<h2>Last Avatar</h2>
+								<div class="review">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									<h4>180k voters</h4>
+								</div>
+								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<h3>Cast:</h3>
+								<div class="slide-cast">
+									<div class="single-slide-cast">
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
+									</div>
+								</div>
+								<div class="slide-trailor">
+									<h3>Watch Trailer</h3>
+									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row hero-area-slide">
+						<div class="col-lg-6 col-md-5">
+							<div class="hero-area-content">
+								<img th:src="@{/images/video/slide3.png}" src="../../static/images/video/slide3.png" alt="about" />
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-7">
+							<div class="hero-area-content pr-50">
+								<h2>The Deer God</h2>
+								<div class="review">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									<h4>180k voters</h4>
+								</div>
+								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<h3>Cast:</h3>
+								<div class="slide-cast">
+									<div class="single-slide-cast">
+										<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
+									</div>
+								</div>
+								<div class="slide-trailor">
+									<h3>Watch Trailer</h3>
+									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-area-thumb">
+					<div class="thumb-prev">
+						<div class="row hero-area-slide">
+							<div class="col-lg-6">
+								<div class="hero-area-content">
+									<img th:src="@{/images/video/slide3.png}" src="../../static/images/video/slide3.png" alt="about" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="hero-area-content pr-50">
+									<h2>Last Avatar</h2>
+									<div class="review">
+										<div class="author-review">
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+										</div>
+										<h4>180k voters</h4>
+									</div>
+									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+									<h3>Cast:</h3>
+									<div class="slide-cast">
+										<div class="single-slide-cast">
+											<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
+										</div>
+									</div>
+									<div class="slide-trailor">
+										<h3>Watch Trailer</h3>
+										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="thumb-next">
+						<div class="row hero-area-slide">
+							<div class="col-lg-6">
+								<div class="hero-area-content">
+									<img th:src="@{/images/video/slide1.png}" src="../../static/images/video/slide1.png" alt="about" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="hero-area-content pr-50">
+									<h2>The Deer God</h2>
+									<div class="review">
+										<div class="author-review">
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+											<i class="icofont icofont-star"></i>
+										</div>
+										<h4>180k voters</h4>
+									</div>
+									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+									<h3>Cast:</h3>
+									<div class="slide-cast">
+										<div class="single-slide-cast">
+											<img th:src="@{/images/video/cast/cast1.png}" src="../../static/images/video/cast/cast1.png" alt="about" />
+										</div>
+									</div>
+									<div class="slide-trailor">
+										<h3>Watch Trailer</h3>
+										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- hero area end -->
+		<!-- portfolio section start -->
+		<section class="portfolio-area pt-60">
+			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-6 text-center text-lg-left">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="row portfolio-item">
+							<div class="col-md-4 col-sm-6 soon released" th:each="page:${pageInfo.getList()}">
+								<div class="single-portfolio">
+									<div class="single-portfolio-img">
+										<img th:src="@{/images/video/portfolio/portfolio1.png}" src="../../static/images/video/portfolio/portfolio1.png" alt="portfolio" />
+										<a th:href="${page.vidUrl}" class="popup-youtube">
+											<i class="icofont icofont-ui-play"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 text-center text-lg-left">
+					    <div class="portfolio-sidebar">
+							<img th:each="pic:${picturePageInfo.getList()}" th:src="${pic.picUrl}" alt="sidebar" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- portfolio section end -->
+		<!-- video section start -->
+		<section class="video ptb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+					    <div class="section-title pb-20">
+							<h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+                    <div class="col-md-9">
+						<div class="video-area">
+							<img th:src="@{/images/video/video/video1.png}" src="../../static/images/video/video/video1.png" alt="video" />
+							<a href="/sp/15832409664c0e5ac3b670c049.mp4_last.mp4" class="popup-youtube">
+								<i class="icofont icofont-ui-play"></i>
+							</a>
+						</div>
+                    </div>
+                    <div class="col-md-3">
+						<div class="row">
+							<div class="col-md-12 col-sm-6" th:each="tow:${pageInfoTwo.getList()}">
+								<div class="video-area">
+									<img th:src="@{/images/video/video/video2.png}" src="../../static/images/video/video/video2.png" alt="video" />
+									<a th:href="${tow.vidUrl}" class="popup-youtube">
+										<i class="icofont icofont-ui-play"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+				</div>
+			</div>
+		</section><!-- video section end -->
+	</body>
+	<!-- jquery main JS -->
+	<script th:src="@{/js/jquery.min.js}" ></script>
+	<!-- Bootstrap JS -->
+	<script th:src="@{/js/bootstrap.min.js}" ></script>
+	<!-- Slick nav JS -->
+	<script th:src="@{/js/jquery.slicknav.min.js}" ></script>
+	<!-- owl carousel JS -->
+	<script th:src="@{/js/owl.carousel.min.js}" ></script>
+	<!-- Popup JS -->
+	<script th:src="@{/js/jquery.magnific-popup.min.js}" ></script>
+	<!-- Isotope JS -->
+	<script th:src="@{/js/isotope.pkgd.min.js}" ></script>
+	<!-- main JS -->
+	<script th:src="@{/js/main.js}"></script>
+</html>

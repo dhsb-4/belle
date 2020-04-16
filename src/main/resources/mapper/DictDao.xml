@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsp.belle.dao.DictDao">
+
+    <resultMap type="com.tsp.belle.entity.Dict" id="DictMap">
+        <result property="dictId" column="dict_id" jdbcType="INTEGER"/>
+        <result property="dictType" column="dict_type" jdbcType="VARCHAR"/>
+        <result property="dictName" column="dict_name" jdbcType="VARCHAR"/>
+        <result property="dictValue" column="dict_value" jdbcType="VARCHAR"/>
+        <result property="dictParentId" column="dict_parent_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="DictMap">
+        select
+          dict_id, dict_type, dict_name, dict_value, dict_parent_id
+        from belle.dict
+        <where>
+            <if test="dictId != null">
+                and dict_id = #{dictId}
+            </if>
+            <if test="dictType != null and dictType != ''">
+                and dict_type = #{dictType}
+            </if>
+            <if test="dictName != null and dictName != ''">
+                and dict_name = #{dictName}
+            </if>
+            <if test="dictValue != null and dictValue != ''">
+                and dict_value = #{dictValue}
+            </if>
+            <if test="dictParentId != null">
+                and dict_parent_id = #{dictParentId}
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>
