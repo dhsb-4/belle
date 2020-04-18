@@ -341,20 +341,16 @@
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" class="active" th:onclick="|doAll('全部')|">全部</li>
-								<li data-filter=".soon" th:href="@{/video/movies(type='动漫')}">动漫</li>
-								<li data-filter=".soon" th:href="@{/video/movies(type='美女')}">美女</li>
+								<li data-filter="*" class="active" th:onclick="|doAll('')|">全部</li>
+								<li data-filter=".soon" th:onclick="|doAll('动漫')|">动漫</li>
+								<li data-filter=".soon" th:onclick="|doAll('美女')|">美女</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<hr />
-				<div class="row portfolio-item" id="all">
-					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
-						<div class="single-portfolio">
+				<div class="row portfolio-item">
 
-						</div>
-					</div>
 				</div>
 				<!--<div class="col-sm-5">
 					<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
@@ -411,7 +407,7 @@
 		<script th:src="@{/js/main.js}"></script>
 		<script>
 
-			All();
+			doAll();
 
 			function aToVideo(url) {
 				console.log(url);
@@ -438,39 +434,48 @@
 				$("#mp2").remove();
 			}
 
-			function All(){
+
+			function doAll(type){
 				$.ajax({
 					type: "POST",
 					url	: "/video/moviesall",
-					data: "",
+					data: {"type":type},
 					dataType:"json",
 					success:function(data){
-						//前面标签
-						// TODO 还没做完
-						let htmlDivElement = document.createElement("div");
-						htmlDivElement.setAttribute("class","single-portfolio-img");
-						let img = document.createElement("img");
-						img.setAttribute("src","/images/video/portfolio/portfolio1.png");
-						img.setAttribute("alt","portfolio");
-						let a = document.createElement("a");
-						a.setAttribute("class","popup-youtube");
-						a.setAttribute("href",data[0].vidUrl);
-						let i = document.createElement("i");
-						i.setAttribute("class","icofont icofont-ui-play");
-						a.append(i)
-						htmlDivElement.append(img)
-						htmlDivElement.append(a)
+						$(".portfolio-item").html("");
+						//标签
+						for (let l in data) {
 
+							let htmlDivSoon = document.createElement("div");
+							htmlDivSoon.setAttribute("class", "col-lg-3 col-md-4 col-sm-6 soon released");
 
+							let htmlDivSingle = document.createElement("div");
+							htmlDivSingle.setAttribute("class", "single-portfolio");
 
+							let htmlDivElement = document.createElement("div");
+							htmlDivElement.setAttribute("class", "single-portfolio-img");
+							let img = document.createElement("img");
+							img.setAttribute("src", "/images/video/portfolio/portfolio1.png");
+							img.setAttribute("alt", "portfolio");
+							let a = document.createElement("a");
+							a.setAttribute("class", "popup-youtube");
+							a.setAttribute("href", data[l].vidUrl);
+							let i = document.createElement("i");
+							i.setAttribute("class", "icofont icofont-ui-play");
+							a.append(i)
+							htmlDivElement.append(img)
+							htmlDivElement.append(a)
+							htmlDivSingle.append(htmlDivElement)
+							htmlDivSoon.append(htmlDivSingle)
 
-						$(".single-portfolio").append(htmlDivElement);
-						$(".popup-youtube").click(function () {
-							return false;
-						});
-						$(".icofont-ui-play").click(function () {
-							aToVideo($(this).parent().attr("href"));
-						});
+							$(".portfolio-item").append(htmlDivSoon);
+							$(".popup-youtube").click(function () {
+								return false;
+							});
+							$(".icofont-ui-play").click(function () {
+								aToVideo($(this).parent().attr("href"));
+							});
+						}
 					}
 				})
 			}

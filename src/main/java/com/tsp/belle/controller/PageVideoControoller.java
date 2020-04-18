@@ -74,12 +74,15 @@ public class PageVideoControoller {
 
     @RequestMapping("video/moviesall")
     @ResponseBody
-    public String moviesall(Page<Video> page, Video video){
+    public String moviesall(Page<Video> page, Video video,String type){
         //分页查询      --视频
-        PageHelper.startPage((int)page.getCurrent(),2);
+        PageHelper.startPage((int)page.getCurrent(),6);
         QueryWrapper<Video> wrapper = new QueryWrapper<Video>(video);
 
 
+        if (type!=null&&type!=""){
+            wrapper.eq("vid_type",type);
+        }
 
         PageInfo<Video> pageInfo = new PageInfo<>(videoService.list(wrapper));
 
