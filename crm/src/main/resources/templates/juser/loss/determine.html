@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>确定流失</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>确定流失 <i class="fa fa-user"></i></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/juser/defer/save}" action="/juser/defer/save" method="post">
+                            <input type="hidden" name="lstCustNo" id="lstCustNo" value="1" th:value="${cstLost.lstCustNo}">
+                            <input type="hidden" name="lstCustManagerId" id="lstCustManagerId" value="1" th:value="${cstLost.lstCustManagerId}">
+                            <input type="hidden" name="lstLostDate" id="lstLostDate" value="1" th:value="${cstLost.lstLostDate}">
+                            <input type="hidden" name="lstStatus" id="lstStatus" value="1" th:value="${cstLost.lstStatus}">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lstId"> 编号 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="lstId" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="lstId" required="required"
+                                       placeholder="请输入用户名(必填项)" type="text" th:value="${cstLost.lstId}">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lstCustName"> 客户名称 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="lstCustName" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="lstCustName" required="required"
+                                       placeholder="请输入负责人(必填项)" type="text" th:value="${cstLost.lstCustName}">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lstCustManagerName"> 客户经理 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="lstCustManagerName" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="lstCustManagerName" required="required"
+                                       placeholder="请输入负责人(必填项)" type="text" th:value="${cstLost.lstCustManagerName}">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lstLastOrderDate"> 上次下单时间 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="lstLastOrderDate" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="lstLastOrderDate" required="required"
+                                       placeholder="请输入成功机率(必填项)" type="text" th:value="${cstLost.lstLastOrderDate}">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lstDelay"> 暂缓措施 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="lstDelay" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="10" data-validate-words="1" name="lstDelay" required="required"
+                                   placeholder="请输入成功机率(必填项)" type="text" th:value="${cstLost.lstDelay}">
+                        </div>
+                        </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Delay"> 流失原因 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea id="Delay" class="form-control col-md-7 col-xs-12" data-validate-length-range="10" th:value="${cstLost.lstReason}" data-validate-words="1" name="lstReason" required="required" placeholder="请输入概要(必填项)" type="text"></textarea>
+                                </div>
+                            </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button id="send" type="submit" class="btn btn-success">保存</button>
+                                <button type="button" class="btn btn-primary" id="back">返回</button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function(){
+        $("#Delay").attr("required",true);
+    });
+</script>
+</html>

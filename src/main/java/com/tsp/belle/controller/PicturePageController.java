@@ -24,6 +24,13 @@ public class PicturePageController {
     @Autowired
     private PictureService pictureService;
 
+    /**
+     * 跳转到图片基本页面
+     * @param page
+     * @param picture
+     * @param model
+     * @return
+     */
     @RequestMapping("/index")
     public String index(Page<Picture> page,
                         Picture picture,

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsp.belle.dao.UserDao">
+
+    <resultMap type="com.tsp.belle.entity.User" id="UserMap">
+        <result property="usrId" column="usr_id" jdbcType="INTEGER"/>
+        <result property="usrAccount" column="usr_account" jdbcType="INTEGER"/>
+        <result property="usrName" column="usr_name" jdbcType="VARCHAR"/>
+        <result property="usrPassword" column="usr_password" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+        <result property="usrEmail" column="usr_email" jdbcType="VARCHAR"/>
+        <result property="usrPhone" column="usr_phone" jdbcType="VARCHAR"/>
+        <result property="usrUrl" column="usr_url" jdbcType="VARCHAR"/>
+        <result property="usrImgurl" column="usr_imgurl" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+          usr_id, usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark
+        from belle.user
+        <where>
+            <if test="usrId != null">
+                and usr_id = #{usrId}
+            </if>
+            <if test="usrAccount != null">
+                and usr_account = #{usrAccount}
+            </if>
+            <if test="usrName != null and usrName != ''">
+                and usr_name = #{usrName}
+            </if>
+            <if test="usrPassword != null and usrPassword != ''">
+                and usr_password = #{usrPassword}
+            </if>
+            <if test="roleId != null">
+                and role_id = #{roleId}
+            </if>
+            <if test="usrEmail != null and usrEmail != ''">
+                and usr_email = #{usrEmail}
+            </if>
+            <if test="usrPhone != null and usrPhone != ''">
+                and usr_phone = #{usrPhone}
+            </if>
+            <if test="usrUrl != null and usrUrl != ''">
+                and usr_url = #{usrUrl}
+            </if>
+            <if test="usrImgurl != null and usrImgurl != ''">
+                and usr_imgurl = #{usrImgurl}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+    <!--使用账号登陆-->
+    <select id="login" parameterType="LONG" resultType="User">
+        select usr_id, usr_account, usr_name, usr_password, role_id, usr_email, usr_phone, usr_url, usr_imgurl, remark
+        from user
+        where usr_account=#{usrAccount}
+    </select>
+
+
+</mapper>
