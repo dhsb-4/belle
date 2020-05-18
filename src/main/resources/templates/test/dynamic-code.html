@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>动态验证码</title>
+</head>
+<body>
+<button onclick="dynamicCode()" >获取验证码</button>
+<img  alt="" src="" id="img"/>
+
+<script th:src="@{/js/jquery.min.js}" src="../../static/js/jquery.min.js"></script>
+<script th:src="@{/common/js/common.js}" src="../../static/common/js/common.js"></script>
+<script>
+    function dynamicCode(){
+        $("#img").attr("src", "/base/dynamic-code?m="+Math.random())
+    }
+</script>
+</body>
+</html>

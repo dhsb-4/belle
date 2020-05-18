@@ -1,11 +1,14 @@
 package com.tsp.belle.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.tsp.belle.entity.Carousel;
 import com.tsp.belle.entity.Picture;
 import com.tsp.belle.entity.Video;
+import com.tsp.belle.service.CarouselService;
 import com.tsp.belle.service.PictureService;
 import com.tsp.belle.service.VideoService;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class PageVideoControoller {
@@ -23,6 +27,9 @@ public class PageVideoControoller {
 
     @Resource
     private PictureService pictureService;
+
+    @Resource
+    private CarouselService carouselService;
 
     /**
      * 视频首页
@@ -33,7 +40,7 @@ public class PageVideoControoller {
      * @return
      */
     @RequestMapping("video/index")
-    public String index(Page<Video> page, Picture picture, Video video, Model model){
+    public String index(Page<Video> page, Picture picture, Video video, Carousel carousel, Model model){
 
         //分页查询      --视频
         PageHelper.startPage((int)page.getCurrent(),(int)page.getSize());
@@ -50,41 +57,43 @@ public class PageVideoControoller {
         QueryWrapper<Picture> wrapperPic = new QueryWrapper<Picture>(picture);
         PageInfo<Picture> picturePageInfo = new PageInfo<>(pictureService.list(wrapperPic));
 
+        //轮播图查询3条记录
+        PageHelper.startPage((int)page.getCurrent(),3);
+        QueryWrapper<Carousel> wrapperslider = new QueryWrapper<>(carousel);
+        PageInfo<Carousel> sliderPageInfo =new PageInfo<>(carouselService.list(wrapperslider));
+
+
         model.addAttribute("picturePageInfo",picturePageInfo);
         model.addAttribute("pageInfoTwo",pageInfoTwo);
         model.addAttribute("pageInfo",pageInfo);
+
+        model.addAttribute("sliderPageInfo",sliderPageInfo);
         return "video/index";
     }
 
 
-    @GetMapping("video/movies")
-    public String movies(Page<Video> page, Video video, Model model,String type){
+    @RequestMapping("video/moviesall")
+    @ResponseBody
+    public String moviesall(Page<Video> page, Video video,String type){
         //分页查询      --视频
-        PageHelper.startPage((int)page.getCurrent(),2);
+        PageHelper.startPage((int)page.getCurrent(),6);
         QueryWrapper<Video> wrapper = new QueryWrapper<Video>(video);
 
-        //类型判断
-        if (!type.equals("")){
-            if (type.equals("动漫")){
-                wrapper.eq("vidType",type);
-            }else{
-                wrapper.eq("vidType",type);
-            }
+
+        if (type!=null&&type!=""){
+            wrapper.eq("vid_type",type);
         }
 
         PageInfo<Video> pageInfo = new PageInfo<>(videoService.list(wrapper));
 
-        model.addAttribute("pageInfo",pageInfo);
-        return "video/movies";
+        List<Video> videoList = pageInfo.getList();
+
+        return JSONArray.toJSONString(videoList);
     }
 
-
-    @RequestMapping("/video/type")
-    @ResponseBody
-    public String type(String type){
-
-
-        return null;
+    @RequestMapping("video/movies")
+    public String movies(){
+        return "video/movies";
     }
 
 
@@ -113,12 +122,6 @@ public class PageVideoControoller {
         return "video/moviedetails";
     }
 
-
-    @RequestMapping("video/topmovies")
-    public String topmovies(){
-
-        return "video/topmovies";
-    }
 
 
 }

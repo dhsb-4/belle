@@ -90,4 +90,18 @@ public class PictureController extends ApiController {
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.pictureService.removeByIds(idList));
     }
+
+    /**
+     * 这个是用来添加图片浏览次数的
+     * @param picUrl
+     */
+    @GetMapping("picUrl")
+    public void browseCountUp(@RequestParam("picUrl")String picUrl){
+        QueryWrapper<Picture> pictureQueryWrapper = new QueryWrapper<>();
+        pictureQueryWrapper.lambda().like(Picture::getPicUrl,picUrl);
+        Picture one = pictureService.getOne(pictureQueryWrapper);
+        one.setPicBrowseCount(one.getPicBrowseCount()+1);
+        this.pictureService.updateById(one);
+    }
+
 }

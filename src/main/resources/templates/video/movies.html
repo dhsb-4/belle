@@ -341,34 +341,25 @@
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" th:onclick="|doVideo('美女')|" class="active">美女</li>
-								<li data-filter=".soon">动漫</li>
+								<li data-filter="*" class="active" th:onclick="|doAll('')|">全部</li>
+								<li data-filter=".soon" th:onclick="|doAll('动漫')|">动漫</li>
+								<li data-filter=".soon" th:onclick="|doAll('美女')|">美女</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="row portfolio-item">
-					<div class="col-lg-3 col-md-4 col-sm-6 soon released" th:each="page:${pageInfo.getList()}">
-						<div class="single-portfolio">
-							<div class="single-portfolio-img">
-								<img th:src="@{/images/video/portfolio/portfolio1.png}" alt="portfolio" />
-								<a th:href="${page.vidUrl}" class="popup-youtube">
-									<i class="icofont icofont-ui-play"></i>
-								</a>
-							</div>
-						</div>
-					</div>
+
 				</div>
-				<div class="col-sm-5">
+				<!--<div class="col-sm-5">
 					<div class="dataTables_info" id="datatable-responsive_info" role="status" aria-live="polite">
 						共<span th:text="${pageInfo.getTotal()}">1</span>条记录
 						<span th:text="${pageInfo.getPageNum()}">1</span>
 						/<span th:text="${pageInfo.getPages()}">1</span>页
 					</div>
-				</div>
-				<!-- TODO 分页还差点-->
-				<div class="col-sm-7">
+				</div>-->
+				<!--<div class="col-sm-7">
 					<div class="dataTables_paginate paging_simple_numbers" id="datatable_responsive_paginate">
 						<ul class="pagination">
 							<li class="paginate_button">
@@ -396,7 +387,7 @@
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</section><!-- portfolio section end -->
 
@@ -415,11 +406,77 @@
 		<!-- main JS -->
 		<script th:src="@{/js/main.js}"></script>
 		<script>
-			function doVideo(type) {
+
+			doAll();
+
+			function aToVideo(url) {
+				console.log(url);
+				let m1 = "<div id='mp1' class=\"mfp-bg mfp-ready\"></div>"
+				let m2 = "<div id='mp2' class=\"mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready\" tabindex=\"-1\" style=\"overflow: hidden auto;\">\n" +
+						"    <div class=\"mfp-container mfp-s-ready mfp-iframe-holder\">\n" +
+						"        <div class=\"mfp-content\">\n" +
+						"            <div class=\"mfp-iframe-scaler\"><button title=\"Close (Esc)\" onclick='close()' type=\"button\" class=\"mfp-close\">×</button><iframe class=\"mfp-iframe\" src='"+url+"'  frameborder=\"0\" allowfullscreen=\"\"></iframe></div>\n" +
+						"        </div>\n" +
+						"        <div class=\"mfp-preloader\">Loading...</div>\n" +
+						"    </div>\n" +
+						"</div>"
+				let $preloader = $("#preloader");
+				$preloader.before(m1);
+				$preloader.before(m2);
+				$(".mfp-container").click(function () {
+					close();
+				});
+				return true
+			}
+
+			function close() {
+				$("#mp1").remove();
+				$("#mp2").remove();
+			}
+
+
+			function doAll(type){
 				$.ajax({
 					type: "POST",
-					url	: "/video/type",
-					data: "type="+type
+					url	: "/video/moviesall",
+					data: {"type":type},
+					dataType:"json",
+					success:function(data){
+						$(".portfolio-item").html("");
+						//标签
+						for (let l in data) {
+
+							let htmlDivSoon = document.createElement("div");
+							htmlDivSoon.setAttribute("class", "col-lg-3 col-md-4 col-sm-6 soon released");
+
+							let htmlDivSingle = document.createElement("div");
+							htmlDivSingle.setAttribute("class", "single-portfolio");
+
+							let htmlDivElement = document.createElement("div");
+							htmlDivElement.setAttribute("class", "single-portfolio-img");
+							let img = document.createElement("img");
+							img.setAttribute("src", "/images/video/portfolio/portfolio1.png");
+							img.setAttribute("alt", "portfolio");
+							let a = document.createElement("a");
+							a.setAttribute("class", "popup-youtube");
+							a.setAttribute("href", data[l].vidUrl);
+							let i = document.createElement("i");
+							i.setAttribute("class", "icofont icofont-ui-play");
+							a.append(i)
+							htmlDivElement.append(img)
+							htmlDivElement.append(a)
+							htmlDivSingle.append(htmlDivElement)
+							htmlDivSoon.append(htmlDivSingle)
+
+							$(".portfolio-item").append(htmlDivSoon);
+							$(".popup-youtube").click(function () {
+								return false;
+							});
+							$(".icofont-ui-play").click(function () {
+								aToVideo($(this).parent().attr("href"));
+							});
+						}
+					}
 				})
 			}
 		</script>

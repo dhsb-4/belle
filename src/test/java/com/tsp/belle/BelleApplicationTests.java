@@ -1,6 +1,11 @@
 package com.tsp.belle;
 
 
+
+import com.google.common.collect.Lists;
+import com.tsp.belle.entity.User;
+import com.tsp.belle.service.RedisService;
+
 import com.tsp.belle.file.FileService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 @SpringBootTest
 class BelleApplicationTests {
@@ -41,6 +49,26 @@ class BelleApplicationTests {
         String path = "M00/00/00/rB8Ht151gtOAc-twAAEcrQx4y0E881.jpg";
         fileService.download(path);
     }*/
+    @Test
+    public void testConsumer(){
+        ArrayList<Integer> list = Lists.newArrayList(1, 2, 3, 4, 5);
+        Demo<Integer> demo = new Demo<>();
+        demo.setList(list);
+        demo.consumer(System.out::println);
+
+    }
 
 
+}
+
+class Demo<T>{
+    private List<T> list = new ArrayList();
+    public void setList(List<T> list){
+        this.list = list;
+    }
+
+    public void consumer(Consumer<? super T> consumer){
+        for (T  value:list)
+        consumer.accept(value);
+    }
 }
