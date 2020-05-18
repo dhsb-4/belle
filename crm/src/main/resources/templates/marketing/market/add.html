@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> 制定计划 <i class="fa fa-user"></i></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/marketing/market/save}" action="/marketing/market/save" method="post">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcId"> 编号 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="chcId" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="chcId" required="required" readonly="readonly"
+                                           placeholder="请输入用户名(必填项)" type="text" th:value="${cstCustomer.chcId}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcSource"> 机会来源 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="chcSource" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcSource" required="required" readonly="readonly"
+                                       placeholder="请输入机会来源" type="text" th:value="${cstCustomer.chcSource}">
+                            </div>
+                        </div>
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcCustName"> 客户名称 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="chcCustName" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcCustName" required="required" readonly="readonly"
+                                       placeholder="请输入用户名(必填项)" type="text" th:value="${cstCustomer.chcCustName}">
+                            </div>
+                        </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcRate"> 成功机率 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="chcRate" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="chcRate" required="required" readonly="readonly"
+                                           placeholder="请输入成功机率(必填项)" type="text" th:value="${cstCustomer.chcRate}">
+                                </div>
+                            </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcLinkman"> 负责人 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="chcLinkman" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcLinkman" required="required" readonly="readonly"
+                                       placeholder="请输入负责人(必填项)" type="text" th:value="${cstCustomer.chcLinkman}">
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcTel"> 公司电话 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="chcTel" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcTel" required="required" readonly="readonly"
+                                       placeholder="请输入公司电话(必填项)" type="text" th:value="${cstCustomer.chcTel}">
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcTitle"> 概要 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="chcTitle" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcTitle" required="required" readonly="readonly"
+                                       placeholder="请输入概要(必填项)" type="text" th:value="${cstCustomer.chcTitle}">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcDesc"> 机会描述 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="chcDesc" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcDesc" required="required" readonly="readonly"
+                                       placeholder="请输入机会描述(必填项)" type="text" th:text="${cstCustomer.chcDesc}">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <!--<div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcDesc"> 指派给 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select name="chcDueId" id="usrName" class="form-control" required="required">
+                                    <option th:each="user:${userService}" th:text="${user.usrName}" th:value="${user.usrId}" value="">用户</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcDueDate"> 指派时间 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                <input id="chcDueDate" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10" data-validate-words="1" name="chcDueDate" required="required"
+                                       placeholder="请输入指派时间" type="text" th:value="${cstCustomer.chcDueDate}">
+                            </div>
+                        </div>-->
+                            <table id="datatable-responsive"
+                                   class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                   cellspacing="0" width="100%" role="grid"
+                                   aria-describedby="datatable-responsive_info" style="width: 100%;">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="First name: activate to sort column descending"
+                                        aria-sort="ascending">日期
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        计划项
+                                    </th>
+
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--<tr role="row" class="odd" th:each="salPaln:${salPalnlike}">
+                                    <td tabindex="0" class="sorting_1" th:text="${salPaln.plaDate}">chcId</td>
+                                    <td th:text="${salPaln.plaTodo}">chcId</td>
+                                    <td><a class="delInfo" id="del" href="#" th:onclick="|doDel(this,${salPaln.plaId})|"
+                                                       data-toggle="tooltip" data-placement="top" title=""
+                                                       data-original-title="删除">删除计划</a></td>
+                                </tr>-->
+                                <tr th:each="salPlan:${salPlanService}">
+                                    <td th:if="(${salPlan.plaChcId}==${cstCustomer.chcId})" th:value="${salPlan.plaDate}" th:text="${salPlan.plaDate}">a</td>
+                                    <td th:if="(${salPlan.plaChcId}==${cstCustomer.chcId})" th:value="${salPlan.plaTodo}" th:text="${salPlan.plaTodo}">a</td>
+                                    <td th:if="(${salPlan.plaChcId}==${cstCustomer.chcId})"><a>删除</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plaDate"> 日期 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="plaDate" class="form-control col-md-7 col-xs-12"
+                                          data-validate-length-range="10" data-validate-words="1" name="plaDate" required="required" readonly="readonly"
+                                          placeholder="请输入机会描述(必填项)" type="text" th:value="${timehh}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="plaTodo"> 计划项 <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="plaTodo" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="plaTodo" required="required"
+                                           placeholder="请输入计划项(必填项)" type="text">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button id="send" type="submit" class="btn btn-success">新增</button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<!--<script layout:fragment="js">
+    $(document).ready(function(){
+        $("#back").on("click",function(){
+            window.history.back();
+        });
+    });
+</script>-->
+</html>

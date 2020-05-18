@@ -1,0 +1,35 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>微信登录</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfc649223af094yc4&redirect_uri=http://xxxx.cn/AR/weixin/getAccess_Token&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+</script>
+</html>
+-->
+
+<html>
+<head>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+</head>
+<body>
+<h2>Hello World!</h2>
+<div id="weixin"></div>
+</body>
+<script>
+    window.onload=function () {
+        var obj=new WxLogin({
+            id:"weixin",
+            appid:"wxfecb0e6daba78c9f",
+            scope:"snsapi_login",
+            redirect_uri :"http://likewindz.natapp1.cc/getAccess_Token"
+        })
+    }
+</script>
+</html>

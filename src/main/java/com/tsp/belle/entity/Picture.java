@@ -32,7 +32,7 @@ public class Picture extends Model<Picture> {
     //上传者
     private String picUploadName;
     //浏览次数
-    private String picBrowseCount;
+    private Integer picBrowseCount;
     //备注
     private String picResourceRemark;
     //图片类型

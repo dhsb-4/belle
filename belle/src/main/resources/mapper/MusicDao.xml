@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsp.belle.dao.DictDao">
+
+    <resultMap type="com.tsp.belle.entity.Music" id="MusicMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="musSingerName" column="mus_singer_name" jdbcType="VARCHAR"/>
+        <result property="musUrl" column="mus_url" jdbcType="VARCHAR"/>
+        <result property="musUploadDate" column="mus_upload_date" jdbcType="VARCHAR"/>
+        <result property="musDownloadCount" column="mus_download_count" jdbcType="INTEGER"/>
+        <result property="musUploadName" column="mus_upload_name" jdbcType="VARCHAR"/>
+        <result property="musBrowseCount" column="mus_browse_count" jdbcType="INTEGER"/>
+        <result property="musResourceRemark" column="mus_resource_remark" jdbcType="VARCHAR"/>
+        <result property="musType" column="mus_type" jdbcType="INTEGER"/>
+        <result property="musDuration" column="mus_duration" jdbcType="VARCHAR"/>
+        <result property="musImgUrl" column="mus_img_url" jdbcType="VARCHAR"/>
+        <result property="musSongName" column="mus_song_name" jdbcType="VARCHAR"/>
+        <result property="musForm" column="mus_form" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="MusicMap">
+        SELECT id,mus_singer_name,mus_url,mus_upload_date,mus_download_count,mus_upload_name,mus_browse_count,mus_resource_remark,mus_type,mus_duration,mus_picture_id,mus_img_url,mus_song_name,mus_form FROM music
+    </select>
+</mapper>

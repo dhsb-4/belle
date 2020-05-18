@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+  <meta charset="utf-8" />
+  <title>Musik | Web Application</title>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+ 
+  <link rel="shortcut icon" th:href="@{/images/music/logo/favicon.ico}" href="../../static/images/music/logo/favicon.ico" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css" href="../../static/css/bootstrap.css" />
+  <link rel="stylesheet" th:href="@{/css/music/animate.css}" type="text/css" href="../../static/css/music/animate.css" />
+  <link rel="stylesheet" th:href="@{/css/music/app.css}" type="text/css" href="../../static/css/music/app.css" />
+  <link rel="stylesheet" th:href="@{/css/music/font-awesome.min.css}" type="text/css" href="../../static/css/music/font-awesome.min.css" />
+  <link rel="stylesheet" th:href="@{/css/music/simple-line-icons.css}" type="text/css" href="../../static/css/music/simple-line-icons.css" />
+  <link rel="stylesheet" th:href="@{/js/jPlayer/jplayer.flat.css}" type="text/css" href="../../static/js/jPlayer/jplayer.flat.css" />
+  <link rel="stylesheet" th:href="@{/css/music/beforeafter-content.css}" type="text/css" href="../../static/css/music/beforeafter-content.css" media="screen" />
+  <link rel="stylesheet" th:href="@{/css/music/style.css}" type="text/css" href="../../static/css/music/style.css" media="screen" />
+  <link rel="stylesheet" th:href="@{/css/music/beforeafter-settings.css}" type="text/css" href="../../static/css/music/beforeafter-settings.css" media="screen" />
+
+    <!-- require APlayer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+  <script th:src="@{/js/jquery.js}" type="text/javascript" src="../../static/js/jquery.js"></script>
+  <script th:src="@{/js/freshline/jquery.freshline.beforeafter.js}" type="text/javascript" src="../../static/js/freshline/jquery.freshline.beforeafter.js"></script>
+  <script th:src="@{/js/freshline/animadrag.js}" type="text/javascript" src="../../static/js/freshline/animadrag.js"></script>
+
+    <script th:src="@{/js/ie/html5shiv.js}" src="../../static/js/ie/html5shiv.js"></script>
+    <script th:src="@{/js/ie/respond.min.js}" src="../../static/js/ie/respond.min.js"></script>
+    <script th:src="@{/js/ie/excanvas.js}" src="../../static/js/ie/excanvas.js"></script>
+
+</head>
+
+<body>
+  <section class="vbox">
+    <header class="bg-black lter header header-md navbar navbar-fixed-top-xs">
+      <ul class="nav navbar-nav hidden-xs">
+        <li>
+          <a href="#" class="text-muted">
+            <i class="fa fa-indent text"></i>
+            <i class="fa fa-dedent text-active"></i>
+          </a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="Search songs, albums...">
+          </div>
+        </div>
+      </form>
+    </header>
+
+    <section>
+      <section class="hbox stretch">
+        <section id="content">
+          <section class="vbox">
+            <section class="w-f-md">
+              <section class="hbox stretch bg-black dker">
+                <!-- side content -->
+                <aside class="col-sm-5 no-padder" id="sidebar">
+                  <section class="vbox animated fadeInUp">
+                    <section class="scrollable">
+                      <div class="m-t-n-xxs item pos-rlt">
+                        <div class="top text-right">
+                          <span class="musicbar bg-success bg-empty inline m-r-lg m-t" style="width:25px;height:30px">
+                        <span class="bar1 a3 lter"></span>
+                          <span class="bar2 a5 lt"></span>
+                          <span class="bar3 a1 bg"></span>
+                          <span class="bar4 a4 dk"></span>
+                          <span class="bar5 a2 dker"></span>
+                          <span class="bar6 a6"></span>
+                          <span class="bar7 a7"></span>
+                          </span>
+                        </div>
+                        <div class="bottom gd bg-info wrapper-lg">
+                          <span class="pull-right text-sm">101,400 <br>Followers</span>
+                          <span class="h2 font-thin">Soph Ashe</span>
+                        </div>
+                        <div id="example3" class="beforeafter_slider_3" style="overflow:hidden; width:100%;height:200px">
+                          <ul>
+                            <li th:each="jpg:${aaa}"><img th:src="${jpg.carouselImgUrl}" th:alt="${jpg.carouselImgUrl}"/>
+                              <div id="textbox_12" class="before">
+                                <div id="title_12" class="fadeup" th:text="${jpg.carouselRemark}">Baby Aupair</div>
+                              </div>
+                              <div id="textbox_12" class="after">
+                                <div id="title_12" class="fadeup" th:text="${jpg.carouselRemark}">No Guarantee!</div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <ul th:each="music:${path}" class=" list-group list-group-lg radius no-border no-bg m-t-n-xxs m-b-none auto" id="latest">
+                        <li class="list-group-item">
+                          <a href="#" class="jp-play-me m-r-sm pull-left">
+                          <span class="icon-control-play text" th:onclick="music([[${music.musUrl}]],[[${music.musType}]],[[${music.musForm}]]);"></span>
+                          <span class="icon-control-pause text-active" th:onclick="mus()"></span>
+                        </a>
+                          <div id="hoveraudio" class=" clear text-ellipsis">
+                            <span th:text="${music.musSingerName}">The wheel of fortune</span>
+                            <span class="text-muted" th:text="${music.musDuration}"> -- 03:30</span>
+                          </div>
+                          <div class="music-jump"></div>
+                        </li>
+                      </ul>
+                    </section>
+                  </section>
+                </aside>
+                <section class="col-sm-4 no-padder bg">
+                  <section class="vbox">
+                    <section class="scrollable hover">
+                      <ul th:each="img:${path}" class="list-group list-group-lg no-bg auto m-b-none m-t-n-xxs">
+
+                        <li class="list-group-item clearfix">
+                          <a href="#" class="jp-play-fun pull-right m-t-sm m-l text-md">
+                          <i class="icon-control-play text"  th:onclick="music([[${img.musUrl}]],[[${img.musType}]],[[${img.musForm}]]);"></i>
+                          <i class="icon-control-pause text-active"></i>
+                        </a>
+                          <a href="#" class="pull-left thumb-sm m-r">
+                          <img th:src="${img.musImgUrl}" alt="...">
+                        </a>
+                          <a class="clear" href="#">
+                          <span class="block text-ellipsis" th:text="${img.musSingerName}">Little Town</span>
+                          <small class="text-muted" th:text="${img.musSongName}">by Soph Ashe</small>
+                        </a>
+                        </li>
+                      </ul>
+                    </section>
+                  </section>
+                </section>
+                <section class="col-sm-3 no-padder lt">
+                  <section class="vbox">
+                    <section class="scrollable hover">
+                      <div th:each="image:${img}" class="m-t-n-xxs">
+                        <div class="item pos-rlt">
+                          <a href="#" class="item-overlay active opacity wrapper-md font-xs">
+                          <span class="block h3 font-bold text-info" th:text="${image.picName}">Search</span>
+                          <span class="text-muted" th:text="${image.picResourceRemark}">Search the music you like</span>
+                          <span class="bottom wrapper-md block"> <i class="icon-arrow-right i-lg pull-right"></i></span>
+                        </a>
+                          <a href="#">
+                          <img class="img-full" th:src="${image.picUrl}" alt="...">
+                        </a>
+                        </div>
+                      </div>
+                    </section>
+                  </section>
+                </section>
+              </section>
+            </section>
+            <footer class="footer bg-success dker">
+                <div class="music">
+                    <meting-js
+                            class="music"
+                            server="netease"
+                            type="song"
+                            id="1365914380"
+                            autoplay="true"
+                            loop="one"
+                            preload="auto">
+                    </meting-js>
+                </div>
+              <!--<div id="jp_container_N">
+                <div class="jp-type-playlist">
+                  <div id="jplayer_N" class="jp-jplayer hide"></div>
+                  <div class="jp-gui">
+                    <div class="jp-video-play hide">
+                      <a class="jp-video-play-icon">play</a>
+                    </div>
+                  </div>
+                  <div class="jp-playlist dropup" id="playlist">
+                    <ul class="dropdown-menu aside-xl dker">
+                      &lt;!&ndash; The method Playlist.displayPlaylist() uses this unordered list &ndash;&gt;
+                      <li class="list-group-item"></li>
+                    </ul>
+                  </div>
+                  <div class="jp-no-solution hide">
+                    <span>Update Required</span> To play the media you will need to either update your browser to a recent
+                    version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                  </div>
+                </div>
+              </div>-->
+            </footer>
+
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+      </section>
+    </section>
+  </section>
+
+  <script th:src="@{/js/bootstrap.js}" src="../../static/js/bootstrap.js"></script>
+  <script th:src="@{/js/example.js}" type="text/javascript" src="../../static/js/example.js"></script>
+  <script th:src="@{/js/app.js}" src="../../static/js/app.js"></script>
+  <script th:src="@{/js/app.plugin.js}" src="../../static/js/app.plugin.js"></script>
+  <script th:src="@{/js/jPlayer/jquery.jplayer.min.js}" type="text/javascript" src="../../static/js/jPlayer/jquery.jplayer.min.js"></script>
+  <script th:src="@{/js/jPlayer/add-on/jplayer.playlist.min.js}" type="text/javascript" src="../../static/js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+  <script th:src="@{/js/jPlayer/demo.js}" type="text/javascript" src="../../static/js/jPlayer/demo.js"></script>
+  <script type="text/javascript">
+          function music(url,type,musfrom) {
+              $.ajax({
+                  type : "POST",  //提交方式
+                  url : "http://localhost:8080/music/listen#",
+                  success : function(result) {//返回数据根据结果进行相应的处理
+                      $(".music").html("<meting-js\n" +
+                          "                            class=\"music\"\n" +
+                          "                            server="+musfrom+"\n" +
+                          "                            type="+type+"\n" +
+                          "                            id="+url+"\n" +
+                          "                            autoplay=\"true\"\n" +
+                          "                            loop=\"one\"\n" +
+                          "                            preload=\"auto\">\n" +
+                          "                    </meting-js>");
+                  }
+              });
+          }
+  </script>
+</body>
+</html>
