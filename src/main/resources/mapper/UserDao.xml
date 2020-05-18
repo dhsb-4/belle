@@ -61,6 +61,12 @@
         from user
         where usr_account=#{usrAccount}
     </select>
-
+    <select id="checkEmail" resultType="int">
+        select count(1) from user where usr_email=#{usrEmail}
+    </select>
+    
+    <insert id="addUser" parameterType="User">
+        insert into user values (#{usrAccount},#{usrName},#{usrPassword},#{roleId},#{usrEmail},#{usrPhone},#{usrUrl},#{usrImgurl},#{remark})
+    </insert>
 
 </mapper>

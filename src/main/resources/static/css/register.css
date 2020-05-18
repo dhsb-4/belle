@@ -42,7 +42,12 @@ a:hover {
 .text-white {
 	color: whitesmoke;
 }
-
+.text-green {
+	color: lawngreen;
+}
 .login_btn {
 	width: 100%;
+}
+body{
+	background-image: url("../images/2.jpg");
 }

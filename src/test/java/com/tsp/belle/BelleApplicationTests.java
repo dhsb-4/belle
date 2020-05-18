@@ -1,12 +1,11 @@
 package com.tsp.belle;
 
 
-import com.tsp.belle.entity.User;
-import com.tsp.belle.service.RedisService;
 import com.tsp.belle.file.FileService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

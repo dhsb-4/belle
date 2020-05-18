@@ -5,7 +5,6 @@ import com.luhuiguo.fastdfs.service.FastFileStorageClient;
 import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.exception.BelleException;
 import com.tsp.belle.file.FileService;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;

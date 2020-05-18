@@ -7,7 +7,11 @@ import com.tsp.belle.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * (Page)页面跳转层
  *
@@ -53,5 +57,11 @@ public class PageController {
         model.addAttribute("page",this.dictService.page(page, new QueryWrapper<>(dict)));
         return "login";
     }
-
+    @GetMapping("/registersuccess.html")
+    public String registerSuccess(Model model, HttpServletRequest request, String usrAccount){
+        System.out.println(usrAccount);
+        Integer account=Integer.valueOf(usrAccount);
+        model.addAttribute("account",account);
+        return "registersuccess.html";
+    }
 }

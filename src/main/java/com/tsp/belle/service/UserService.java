@@ -17,4 +17,19 @@ public interface UserService extends IService<User> {
      */
     User login(Long usrAccount,String usrPassword);
 
+    /**
+     * 检查邮箱是否唯一
+     * @param email
+     * @return
+     */
+    int checkEmail(String email);
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    int addUser(User user);
+
+
 }

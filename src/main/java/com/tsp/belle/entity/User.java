@@ -1,8 +1,9 @@
 package com.tsp.belle.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class User extends Model<User> implements Serializable {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long usrId;
     //登录账号
     private Long usrAccount;

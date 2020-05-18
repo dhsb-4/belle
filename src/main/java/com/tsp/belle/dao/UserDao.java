@@ -18,4 +18,17 @@ public interface UserDao extends BaseMapper<User> {
      */
     User login(@Param("usrAccount") Long usrAccount);
 
+    /**
+     * 验证邮箱号是否唯一
+     * @param email
+     * @return
+     */
+    int checkEmail(@Param("usrEmail") String email);
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    int addUser(User user);
 }

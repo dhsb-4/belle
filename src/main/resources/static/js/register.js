@@ -41,7 +41,7 @@
 			type: "get",
 			url: "user/imageVerify",
 			success: function () {
-				$("#refCode_reg_img").prop("src", 'user/imageVerify?' + Math.random());
+				$("#refCode_reg_img").prop("src", 'user/imageVerify');
 			},error:function () {
 				alert("错误!")
 			}
@@ -54,7 +54,7 @@
 	var curCount; // 当前剩余秒数
 	var msg_send_count = 0;
 	// 发送验证码
-	$("#msg-btn").on("click", function() {
+	/*$("#msg-btn").on("click", function() {
 		if($(this).prop("disabled") != "disabled") {
 			vailPhone();
 			if(!/^1[34578]\d{9}$/.test($("#phone").val())) {
@@ -95,10 +95,10 @@
 				}
 			});
 		}
-	});
+	});*/
 
 	// timer处理函数
-	function SetRemainTime() {
+	/*function SetRemainTime() {
 		if(curCount == 0) {
 			clearInterval(InterValObj); // 停止计时器
 			$("#msg-btn").removeClass("layui-btn-disabled");
@@ -108,12 +108,12 @@
 			curCount--;
 			$("#msg-btn").text(curCount + "秒后再次获取");
 		}
-	}
+	}*/
 
 	var phone_status;
 
 	// 验证手机号唯一
-	function vailPhone() {
+	/*function vailPhone() {
 		$.ajax({
 			url: "user/checkAccount.do",
 			type: "post",
@@ -126,13 +126,34 @@
 				phone_status = result.status;
 			}
 		});
-	}
+	}*/
+
 
 	// 手机号输入框改变时验证
-	$("#phone").on("change", function() {
+	/*$("#phone").on("change", function() {
 		vailPhone();
 		if(phone_status == 0) {
 			layer.msg("该手机号已被注册", {
+				icon: 5
+			});
+		}
+	});*/
+
+	var email_status;
+
+	//邮箱号输入框改变时验证
+	$("#email").on("change", function() {
+		$.ajax({
+			url: "user/checkAccount.do",
+			type: "post",
+			data:{"email": $("#email").val(),
+				"type": "email"},
+			success: function(result) {
+				email_status = result.code;
+			}
+		});
+		if(email_status == 203) {
+			layer.msg("该邮箱号已被注册", {
 				icon: 5
 			});
 		}
@@ -141,9 +162,19 @@
 	// 自定义验证规则
 	form.verify({
 		regexit: function() {
-			vailPhone();
-			if(phone_status == 0) {
-				return "该手机号已被注册";
+			$.ajax({
+				url: "user/checkAccount.do",
+				type: "post",
+				data:{"email": $("#email").val(),
+					"type": "email"},
+				success: function(result) {
+					email_status = result.code;
+				}
+			});
+			if(email_status === 203) {
+				layer.msg("该邮箱号已被注册", {
+					icon: 5
+				});
 			}
 		},
 		pwd: function(value) {
@@ -159,13 +190,40 @@
 			}
 		},
 		code: function(value) {
-			alert(value)
+			var msg=1;
+			$.ajax({
+				url: "user/verify",
+				type: "post",
+				async: false,
+				data:{"code": value
+					},
+				success: function(result) {
+					 msg=result.message;
+
+
+				}
+			});
+
+
+			if (msg==="验证码不能为空!"){
+				return "验证码不能为空!";
+			}else if(msg==="验证码不存在!"){
+				return "验证码不存在!";
+			}else if(msg==="验证码已过期!"){
+				refCode();
+				return "验证码已过期!";
+			}else if (msg==="验证码不正确!"){
+				refCode();
+				return "验证码不正确!";
+			}
+
+			/*alert(value)
 			if(value.toUpperCase() != vailCode) {
 				refCode();
 				return "图品验证码错误";
-			}
-		},
-		msgcode: function(value) {
+			}*/
+		}
+		/*msgcode: function(value) {
 			if(value.trim().length != 6) {
 				return "短信验证码错误";
 			} else if(msg_send_count == 0) {
@@ -186,19 +244,50 @@
 					}
 				});
 			}
-		}
+		}*/
 	});
 
 	//监听提交  
 	form.on("submit(register)", function() {
-		if(phone_status == 0) {
-			layer.msg("该手机号已被注册", {
+		$.ajax({
+			url: "user/checkAccount.do",
+			type: "post",
+			data:{"email": $("#email").val(),
+				"type": "email"},
+			success: function(result) {
+				email_status = result.code;
+			}
+		});
+		if(email_status == 203) {
+			layer.msg("该邮箱号已被注册", {
 				icon: 5
 			});
-		} else if(msg_send_count == 0) {
+		} /*else if(msg_send_count == 0) {
 			layer.msg("请点击获取验证码");
-		} else {
+		}*/ else {
+			// 发送注册请求到后台匹配
 			$.ajax({
+				url: "user/register.do",
+				type: "post",
+				data: {
+					"usrEmail": $("#email").val(),
+					"usrPassword": $("#password").val(),
+					"usrName":$("#usrName").val()
+				},
+				success: function(result) {
+					if(result.code === 0) {
+						alert(result.data.usrAccount);
+						layer.msg("注册成功");
+						location.href='/registersuccess.html?usrAccount='+result.data.usrAccount;
+					} else {
+						$("form")[0].reset();
+						layer.msg(result.msg, {
+							icon: 5
+						});
+					}
+				}
+			});
+			/*$.ajax({
 				url: "user/vailSMSCode.do",
 				type: "post",
 				async: false,
@@ -215,7 +304,7 @@
 							url: "user/register.do",
 							type: "post",
 							data: {
-								"phone": $("#phone").val(),
+								"email": $("#email").val(),
 								"password": $("#password").val()
 							},
 							success: function(result) {
@@ -232,7 +321,7 @@
 						});
 					}
 				}
-			});
+			});*/
 		}
 
 		return false;

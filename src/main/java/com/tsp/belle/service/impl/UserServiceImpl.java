@@ -34,4 +34,14 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
             return user;
         }
     }
+
+    @Override
+    public int checkEmail(String email) {
+        return userDao.checkEmail(email);
+    }
+
+    @Override
+    public int addUser(User user) {
+        return userDao.addUser(user);
+    }
 }

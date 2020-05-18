@@ -1,9 +1,7 @@
 package com.tsp.belle.interceptor;
 
 import com.tsp.belle.annotation.Token;
-import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.entity.User;
-import com.tsp.belle.exception.BelleException;
 import com.tsp.belle.util.CookieUtils;
 import com.tsp.belle.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.annotation.Annotation;
 
 /**
  * @author likeWind

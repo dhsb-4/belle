@@ -1,10 +1,11 @@
 package com.tsp.belle.controller;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.annotation.Token;
+import com.tsp.belle.constants.ResultCode;
 import com.tsp.belle.dto.user.UserDto;
 import com.tsp.belle.entity.User;
 import com.tsp.belle.service.RedisService;
@@ -13,6 +14,7 @@ import com.tsp.belle.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -24,7 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 
+
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -176,10 +180,10 @@ public class UserController extends ApiController {
      */
     @PostMapping("/verify")
     @ResponseBody
-    public Map<String, String> verify(@RequestBody TestVo testVo, ServletWebRequest servletWebRequest) {
+    public Map<String, String> verify(String code, ServletWebRequest servletWebRequest) {
         final ImageVerify.ImageCode imageCode = (ImageVerify.ImageCode) sessionStrategy.getAttribute(servletWebRequest, SESSION_KEY_IMAGE_CODE);
         Map<String, String> m = new HashMap<>();
-        if (testVo.getCode()=="") {
+        if (code=="") {
             m.put("message", "验证码不能为空!");
             return m;
         }
@@ -195,7 +199,7 @@ public class UserController extends ApiController {
             return m;
         }
 
-        if (!imageCode.getCode().equals(testVo.getCode())) {
+        if (!imageCode.getCode().equals(code)) {
             m.put("message", "验证码不正确!");
             return m;
         }
@@ -205,6 +209,41 @@ public class UserController extends ApiController {
         m.put("message", "成功");
         return m;
     }
+
+    /**
+     * 检查邮箱是否唯一
+     * @param email
+     * @param type
+     * @return
+     */
+    @PostMapping("/checkAccount.do")
+    public R checkEmail(String email,String type){
+        System.out.println("邮箱: "+email);
+        System.out.println(type);
+        int result=userService.checkEmail(email);
+        if (result>=1){
+            return failed(ResultCode.user_email_no_unique);
+        }
+        return success(result);
+    }
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    @PostMapping("register.do")
+    public R register(User user){
+        user.setUsrAccount(KeyUtil.getNum(6));
+        boolean result=userService.save(user);
+        if (result){
+            return success(user);
+        }else {
+          return failed("error");
+        }
+
+    }
+
 
 
 

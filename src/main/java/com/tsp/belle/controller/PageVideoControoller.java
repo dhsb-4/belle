@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Controller
 public class PageVideoControoller {
@@ -58,15 +58,36 @@ public class PageVideoControoller {
 
 
     @GetMapping("video/movies")
-    public String movies(Page<Video> page, Video video, Model model){
+    public String movies(Page<Video> page, Video video, Model model,String type){
         //分页查询      --视频
         PageHelper.startPage((int)page.getCurrent(),2);
         QueryWrapper<Video> wrapper = new QueryWrapper<Video>(video);
+
+        //类型判断
+        if (!type.equals("")){
+            if (type.equals("动漫")){
+                wrapper.eq("vidType",type);
+            }else{
+                wrapper.eq("vidType",type);
+            }
+        }
+
         PageInfo<Video> pageInfo = new PageInfo<>(videoService.list(wrapper));
 
         model.addAttribute("pageInfo",pageInfo);
         return "video/movies";
     }
+
+
+    @RequestMapping("/video/type")
+    @ResponseBody
+    public String type(String type){
+
+
+        return null;
+    }
+
+
 
     @RequestMapping("video/blog")
     public String blog(){
